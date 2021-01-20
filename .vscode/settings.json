@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "terminal.integrated.automationShell.windows": "",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+}
