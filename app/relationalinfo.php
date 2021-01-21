@@ -2,9 +2,11 @@
 
 namespace App;
 
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult; 
 use Illuminate\Database\Eloquent\Model;
 
-class relationalinfo extends Model
+class relationalinfo extends Model implements Searchable
 {
     protected $fillable = [
             'member_id',
@@ -15,4 +17,15 @@ class relationalinfo extends Model
             'ministry' ,
             'department' ,
     ];
+
+    public function getSearchResult(): SearchResult
+     {
+        $url = route('/', $this->slug);
+     
+         return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->title,
+            $url
+         );
+     }
 }

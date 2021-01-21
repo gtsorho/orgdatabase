@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\personalinfo;
-use App\relationalinfo;
 use App\emergencyinfo;
+use App\Exports\userExport;
+use App\relationalinfo;
+use Illuminate\Http\Request;
+use Spatie\Searchable\Search;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
+
 
 class memberController extends Controller
 {
@@ -38,35 +42,35 @@ class memberController extends Controller
         ]); 
             
                 
-                $relationalsql = relationalinfo::create([
-                    'member_id' => $personalsql->id,
-                    'period_of_stay' => $request->period_of_stay,
-                    'berean_center' => $request->berean_center,
-                    'tithe' => $request->tithe,
-                    'welfare' => $request->welfare,
-                    'ministry' => $request->ministry,
-                    'department' => $request->department,
-                ]); 
+        $relationalsql = relationalinfo::create([
+            'member_id' => $personalsql->id,
+            'period_of_stay' => $request->period_of_stay,
+            'berean_center' => $request->berean_center,
+            'tithe' => $request->tithe,
+            'welfare' => $request->welfare,
+            'ministry' => $request->ministry,
+            'department' => $request->department,
+        ]); 
         
-                $emergencysql = emergencyinfo::create([
-                    'member_id' => $personalsql->id,
-                    'emergency_name' => $request->emergency_name,
-                    'emergency_phone' => $request->emergency_phone,
-                    'emergency_relation' => $request->emergency_relation,
-                ]); 
+        $emergencysql = emergencyinfo::create([
+            'member_id' => $personalsql->id,
+            'emergency_name' => $request->emergency_name,
+            'emergency_phone' => $request->emergency_phone,
+            'emergency_relation' => $request->emergency_relation,
+        ]); 
 
-                $imagesql = $this->storeImg($request, $personalsql->id);
+        $imagesql = $this->storeImg($request, $personalsql->id);
 
-                return response()->json([$personalsql, $relationalsql, $emergencysql, $imagesql]);     
+        return response()->json([$personalsql, $relationalsql, $emergencysql, $imagesql]);     
     }
-
+    
     public function update(request $request){
         if($this->uservalidation($request->all())){
             return response()->json(['error'=> $this->uservalidation(request()->all()),'status'=>'error']);
         }
         $update_flavour = $request->flavour;
 
-        switch ($update_flavour) {
+        switch ($update_flavour){
             case "personal":
                 $updatesql = personalinfo::where('id', $request->member_id)->update(array_filter($request->except(['flavour', 'member_id'.'profile_path','image'])));
                 
@@ -95,8 +99,35 @@ class memberController extends Controller
     public function delete(request $request){
         personalinfo::where('id', $request->member_id)->delete();
         return response()->json(['status'=>'success', 'message'=> 'delete successful']);
-       } 
+    }
+    
+    public function viewall(request $request){
+        
+        $members = personalinfo::join('relationalinfos', 'personalinfos.id', '=', 'relationalinfos.member_id')
+                            ->join('emergencyinfos', 'personalinfos.id', '=', 'emergencyinfos.member_id')
+                            ->select('personalinfos.*', 'relationalinfos.*', 'emergencyinfos.*')
+                            ->paginate(3);
 
+        return response()->json($members);
+    }
+
+    public function search(request $request){
+        $searchResults = (new Search())
+                    ->registerModel(personalinfo::class, ['name', 'title'])
+                    ->search($request->search);
+        return response()->json($searchResults->paginate(5)); 
+        
+    }
+
+    public function export(){
+        return new userExport;
+    }
+
+    // *****************************
+    // ***************************
+    // ***********************
+    // ********************
+    // Dependent functions.........................................
     public function uservalidation($data){
         $validator = Validator::make(array_filter($data), [
             'title' => ['string'], 

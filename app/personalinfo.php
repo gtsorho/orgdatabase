@@ -2,9 +2,13 @@
 
 namespace App;
 
+use App\emergencyinfo;
+use App\relationalinfo;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Model;
 
-class personalinfo extends Model
+class personalinfo extends Model implements Searchable
 {
    protected $fillable = [
     'profileImg',
@@ -21,5 +25,25 @@ class personalinfo extends Model
     'occupation' ,
     'profession' ,
    ];
+
+   public function getSearchResult(): SearchResult
+     {
+      //   $url = route('', $this->slug);
+     
+         return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->title,
+            // $url
+         );
+     }
+
+     public function reationshipinfo()
+     {
+         return $this->hasOne(relationalinfo::class, 'member_id');
+     }
    
+     public function emergencyinfo()
+     {
+         return $this->hasOne(emergencyinfo::class, 'member_id');
+     }
 }

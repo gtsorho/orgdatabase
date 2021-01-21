@@ -21,3 +21,6 @@ Route::post('/login', 'adminController@login');
 Route::post('/store', 'memberController@store');
 Route::post('/update', 'memberController@update');
 Route::post('/delete', 'memberController@delete');
+Route::get('/viewall', 'memberController@viewall');
+Route::post('/search', 'memberController@search');
+Route::get('/export', 'memberController@export');
