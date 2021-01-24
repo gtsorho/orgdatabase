@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\personalinfo;
 use App\emergencyinfo;
 use App\Exports\userExport;
@@ -22,8 +22,35 @@ class memberController extends Controller
     }
 
     public function store(request $request){
-        if($this->uservalidation($request->all())){
-           return response()->json(['error'=> $this->uservalidation(request()->all()),'status'=>'error']);
+
+        $validator = Validator::make($request->all(), [
+            'title' => ['required','string'], 
+            'name' => ['required','string', 'max:25'],
+            'email' =>[ 'email:rfc','max:30'],   
+            'phone' =>[ 'required','string', 'max:15'],
+            'dob' =>[ 'date'],
+            'address' => [ 'required','string'],
+            'hometown' => [ 'required','string'],
+            'age' => [ 'required','string', 'max:3'],
+            'status' => [ 'required','string', 'max:10'],
+            'employmentstat' => [ 'required','string'],
+            'occupation' => [ 'required','string'],
+            'profession' => [ 'required','string'],
+            'period_of_stay' => [ 'required','string'],
+            'berean_center' => [ 'required','string'],
+            'tithe' => [ 'required','string'],
+            'welfare' => [ 'required','string', 'max:3'],
+            'ministry' => [ 'required','string'],
+            'department' => [ 'required','string'],
+            'emergency_name' => [ 'required','string'],
+            'emergency_phone' => [ 'required','string',  'max:15'],
+            'emergency_relation' => [ 'required','string'],
+            'image' => [ 'file', 'image', 'max:5000']
+        ]);
+
+        if ($validator->fails())
+        {
+            return response()->json(['error'=> $validator->errors()->all(),'status'=>'error']);
         }
         
         $personalsql = personalinfo::create([
@@ -69,15 +96,14 @@ class memberController extends Controller
             return response()->json(['error'=> $this->uservalidation(request()->all()),'status'=>'error']);
         }
         $update_flavour = $request->flavour;
-
         switch ($update_flavour){
-            case "personal":
-                $updatesql = personalinfo::where('id', $request->member_id)->update(array_filter($request->except(['flavour', 'member_id'.'profile_path','image'])));
+            case "personalinfo":
+                $updatesql = personalinfo::where('id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id', 'profile_path','image'])));
                 
                 if($request->has('image')){
                     $img_delete = Storage::disk('public')->delete($request->profile_path);
                     if($img_delete){
-                        $this->storeImg($request, $request->member_id);
+                        $this->storeImg($request, $request->update_id);
                     }
                 }
 
@@ -85,12 +111,12 @@ class memberController extends Controller
 
                 break;
 
-            case "relational":
-                $updatesql = relationalinfo::where('member_id', $request->member_id)->update(array_filter($request->except(['flavour', 'member_id'])));
+            case "relationalinfo":
+                $updatesql = relationalinfo::where('member_id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id'])));
                 return response()->json(['status'=>'success', 'message'=> 'update successful']);
                 break;
-            case "emergency":
-                $updatesql = emergencyinfo::where('member_id', $request->member_id)->update(array_filter($request->except(['flavour', 'member_id'])));
+            case "emergencyinfo":
+                $updatesql = emergencyinfo::where('member_id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id'])));
                 return response()->json(['status'=>'success', 'message'=> 'update successful']);
 
                 break;
@@ -101,12 +127,23 @@ class memberController extends Controller
         return response()->json(['status'=>'success', 'message'=> 'delete successful']);
     }
     
-    public function viewall(request $request){
+    public function viewall(){
         
         $members = personalinfo::join('relationalinfos', 'personalinfos.id', '=', 'relationalinfos.member_id')
                             ->join('emergencyinfos', 'personalinfos.id', '=', 'emergencyinfos.member_id')
                             ->select('personalinfos.*', 'relationalinfos.*', 'emergencyinfos.*')
-                            ->paginate(3);
+                            ->paginate(5);
+
+        return response()->json($members);
+    }
+
+    public function viewone(request $request){
+        $id =  $request->id;
+        $members = personalinfo::join('relationalinfos', 'personalinfos.id', '=', 'relationalinfos.member_id')
+                            ->join('emergencyinfos', 'personalinfos.id', '=', 'emergencyinfos.member_id')
+                            ->select('personalinfos.*', 'relationalinfos.*', 'emergencyinfos.*')
+                            ->where('personalinfos.id', $id)->get();
+                            
 
         return response()->json($members);
     }

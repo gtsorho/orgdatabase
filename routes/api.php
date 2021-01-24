@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\memberController;
 use Illuminate\Http\Request;
 
 /*
@@ -24,3 +25,4 @@ Route::post('/delete', 'memberController@delete');
 Route::get('/viewall', 'memberController@viewall');
 Route::post('/search', 'memberController@search');
 Route::get('/export', 'memberController@export');
+Route::post('/viewone', 'memberController@viewone');

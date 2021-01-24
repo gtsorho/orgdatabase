@@ -65,25 +65,9 @@
 						<th>Actions</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr >
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-							<td href="#infomodal" data-toggle="modal"><img src="{{asset('images/avatar.png')}}" alt="Avatar" class="avatar"></td>
-							<td href="#infomodal" data-toggle="modal">Thomas Hardy</td>
-							<td href="#infomodal" data-toggle="modal">thomashardy@mail.com</td>
-							<td href="#infomodal" data-toggle="modal">89 Chiaroscuro Rd, Portland, USA</td>
-							<td href="#infomodal" data-toggle="modal">(171) 555-2222</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
+				<tbody class="member_info">
+					
+					{{-- <tr>
 						<td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox2" name="options[]" value="1">
@@ -146,7 +130,7 @@
 							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
-					</tr> 
+					</tr>  --}}
 				</tbody>
 			</table>
 			<div class="clearfix">
@@ -173,22 +157,21 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				
-				<div class="circle">
-					<!-- User Profile Image -->
-					<img class="profile-pic" src="{{asset('images/avatar.png')}}">
-				</div>
-				<div class="p-image">
-				<i class="material-icons upload-button ">add_a_photo</i>
-					<input class="file-upload" type="file" accept="image/*"/>
-				</div>
+				<form role="form" enctype="multipart/form-data" class="login-box addForm">
 				
+				<div class="circle ">
+					<!-- User Profile Image -->
+					<img class="profile-pic upload-button" src="{{asset('images/avatar.png')}}">
+					<input class="file-upload" type="file" />
+				</div>
+
 				  <br>
 				<div class="modal-body">
 					<section class="signup-step-container">
 						<div class="container">
 							<div class="row d-flex justify-content-center">
 								<div class="col">
-									<div class="wizard">
+									<div class="wizard addWizard">
 										<div class="wizard-inner">
 											<div class="connecting-line" style="width: 75%"></div>
 											<ul class="nav nav-tabs" role="tablist">
@@ -207,7 +190,7 @@
 											</ul>
 										</div>
 						
-										<form role="form" action="index.html" class="login-box">
+										
 											<div class="tab-content" id="main_form">
 												<div class="tab-pane active" role="tabpanel" id="step1">
 													<h4 class="text-center">Personal Information</h4>
@@ -215,15 +198,15 @@
 														<div class="col-md-2 pr-1">
 															<div class="form-group mt-4">
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Mr">
+																	<input  class="form-check-input" type="radio" name="title" id="inlineRadio1" value="Mr">
 																	<label class="form-check-label" for="inlineRadio1">Mr</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Mrs">
+																	<input  class="form-check-input" type="radio" name="title" id="inlineRadio2" value="Mrs">
 																	<label class="form-check-label" for="inlineRadio2">Mrs</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Miss" >
+																	<input  class="form-check-input" type="radio" name="title" id="inlineRadio3" value="Miss" >
 																	<label class="form-check-label" for="inlineRadio3">Miss</label>
 																</div>
 															</div>
@@ -232,38 +215,38 @@
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>First and Last Name *</label> 
-																<input class="form-control form-control-sm" type="text" name="name" placeholder="" required > 
+																<input  class="form-control form-control-sm" type="text" name="name" placeholder=""  > 
 															</div>
 														</div>
 														<div class="col-md-2" style="max-width: 20%">
 															<div class="form-group">
 																<label>DoB  *</label> 
-																<input class="form-control form-control-sm" type="date" name="dob" placeholder="" required > 
+																<input  class="form-control form-control-sm" type="date" name="dob" placeholder=""  > 
 															</div>
 														</div>
 														<div class="col-md-2" style="max-width: 10%">
 															<div class="form-group">
 																<label>Age  *</label> 
-																<input class="form-control form-control-sm" type="number" name="age" placeholder="22"  required> 
+																<input  class="form-control form-control-sm" type="number" name="age" placeholder="22"  > 
 															</div>
 														</div>
 														<div class="col-md-4 pr-1">
 															<label class="font-weight-bold">Status</label>
 															<div class="form-group mt-0">
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="title" id="inlineRadio1" value="married" required>
+																	<input  class="form-check-input" type="radio" name="status" id="inlineRadio1" value="married" >
 																	<label class="form-check-label" for="inlineRadio1">Married</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="title" id="inlineRadio2" value="widow" required>
+																	<input  class="form-check-input" type="radio" name="status" id="inlineRadio2" value="widow" >
 																	<label class="form-check-label" for="inlineRadio2">Widow</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="title" id="inlineRadio3" value="single" required>
+																	<input  class="form-check-input" type="radio" name="status" id="inlineRadio3" value="single" >
 																	<label class="form-check-label" for="inlineRadio3">Single</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="title" id="inlineRadio3" value="divorced" required>
+																	<input  class="form-check-input" type="radio" name="status" id="inlineRadio3" value="divorced" >
 																	<label class="form-check-label" for="inlineRadio3">Divorced</label>
 																</div>
 															</div>
@@ -271,45 +254,45 @@
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Phone *</label> 
-																<input class="form-control form-control-sm" type="text" name="Phone" placeholder="020 xxx xxxx" required> 
+																<input  class="form-control form-control-sm" type="text" name="phone" placeholder="020 xxx xxxx" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Email Address *</label> 
-																<input class="form-control form-control-sm" type="email" name="name" placeholder="" required> 
+																<input  class="form-control form-control-sm" type="email" name="email" placeholder="" > 
 															</div>
 														</div>
 														
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>Resdential Address *</label> 
-																<input class="form-control form-control-sm" type="text" name="address" placeholder="Tema comm16, lashibi, Gas station" required> 
+																<input  class="form-control form-control-sm" type="text" name="address" placeholder="Tema comm16, lashibi, Gas station" > 
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>Hometown & Region *</label> 
-																<input class="form-control form-control-sm" type="text" name="hometown" placeholder="Sege, Ada; Greater Accra " required> 
+																<input  class="form-control form-control-sm" type="text" name="hometown" placeholder="Sege, Ada; Greater Accra " > 
 															</div>
 														</div>
 														<div class="col-md-4 pr-1">
 															<label class="font-weight-bold">Employment Status</label>
 															<div class="form-group mt-0">
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="empStatus" id="inlineRadio1" value="employed" required>
+																	<input  class="form-check-input" type="radio" name="employmentstat" id="addempstat1" value="employed" >
 																	<label class="form-check-label" for="inlineRadio1">Employed</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="empStatus" id="inlineRadio2" value="unemployed" required>
+																	<input  class="form-check-input" type="radio" name="employmentstat" id="addempstat2" value="unemployed" >
 																	<label class="form-check-label" for="inlineRadio2">Unemployed</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="empStatus" id="inlineRadio3" value="retired" required >
+																	<input  class="form-check-input" type="radio" name="employmentstat" id="addempstat3" value="retired"  >
 																	<label class="form-check-label" for="inlineRadio3">Retired</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="empStatus" id="inlineRadio3" value="student" required>
+																	<input  class="form-check-input" type="radio" name="employmentstat" id="addempstat4" value="student" >
 																	<label class="form-check-label" for="inlineRadio3">Student</label>
 																</div>
 															</div>
@@ -317,13 +300,13 @@
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Occupation *</label> 
-																<input class="form-control form-control-sm" type="text" name="occupation" placeholder="Reseacher or shs" required> 
+																<input  class="form-control form-control-sm" type="text" name="occupation" placeholder="Reseacher or shs" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Field of Profession  *</label> 
-																<input class="form-control form-control-sm" type="text" name="hometown" placeholder="crop Researchist or General Science" required> 
+																<input  class="form-control form-control-sm" type="text" name="profession" placeholder="crop Researchist or General Science" > 
 															</div>
 														</div>
 														
@@ -339,7 +322,7 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="exampleFormControlSelect1">Period of Stay</label>
-															<select class="form-control form-control-sm" id="exampleFormControlSelect1">
+															<select class="form-control form-control-sm" name="period_of_stay" id="exampleFormControlSelect1">
 															  <option>10 years and above</option>
 															  <option>5  years and above</option>
 															  <option>2  years and above</option>
@@ -351,18 +334,18 @@
 													<div class="col-md-2">
 														<div class="form-group">
 															<label>Berea Center No. *</label> 
-															<input class="form-control form-control-sm" type="text" name="centerNo" placeholder=""> 
+															<input class="form-control form-control-sm" type="text" name="berean_center" placeholder=""> 
 														</div>
 													</div>
 													<div class="col-md-2 ml-5 pr-1">
 														<label class="font-weight-bold">Tithe</label>
 														<div class="form-group mt-0">
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="tithe" id="inlineRadio1" value="regular" required>
+																<input class="form-check-input" type="radio" name="tithe" id="addtithe1" value="regular" >
 																<label class="form-check-label" for="inlineRadio1">Regular</label>
 															</div>
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="tithe" id="inlineRadio2" value="irregular" required>
+																<input class="form-check-input" type="radio" name="tithe" id="addtithe2" value="irregular" >
 																<label class="form-check-label" for="inlineRadio2">Irregular</label>
 															</div>
 														</div>
@@ -371,11 +354,11 @@
 														<label class="font-weight-bold">Welfare</label>
 														<div class="form-group mt-0">
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="welfare" id="inlineRadio1" value="yes" required>
+																<input class="form-check-input" type="radio" name="welfare" id="addwelfare1" value="yes" >
 																<label class="form-check-label" for="inlineRadio1">Yes</label>
 															</div>
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="welfare" id="inlineRadio2" value="no" required>
+																<input class="form-check-input" type="radio" name="welfare" id="addwelfare2" value="no" >
 																<label class="form-check-label" for="inlineRadio2">No</label>
 															</div>
 														</div>
@@ -384,15 +367,15 @@
 														<label class="font-weight-bold">Ministry</label>
 														<div class="form-group mt-0">
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="ministry" id="inlineRadio1" value="men" required>
+																<input class="form-check-input" type="radio" name="ministry" id="addmin1" value="men" >
 																<label class="form-check-label" for="inlineRadio1">Men </label>
 															</div>
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="ministry" id="inlineRadio2" value="women" required>
+																<input class="form-check-input" type="radio" name="ministry" id="addmin2" value="women" >
 																<label class="form-check-label" for="inlineRadio2">Women</label>
 															</div>
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="ministry" id="inlineRadio2" value="youth" required>
+																<input class="form-check-input" type="radio" name="ministry" id="addmin2" value="youth" >
 																<label class="form-check-label" for="inlineRadio2">Youth</label>
 															</div>
 														</div>
@@ -402,19 +385,19 @@
 														<label class="font-weight-bold">Department</label>
 														<div class="form-group mt-0">
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="department" id="inlineRadio1" value="music" required>
+																<input class="form-check-input" type="radio" name="department" id="addDpt1" value="music" >
 																<label class="form-check-label" for="inlineRadio1">Music Ministry</label>
 															</div>
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="department" id="inlineRadio2" value="usher" required>
+																<input class="form-check-input" type="radio" name="department" id="addDpt2" value="usher" >
 																<label class="form-check-label" for="inlineRadio2">Protocol Department</label>
 															</div>
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="department" id="inlineRadio1" value="teacher" required>
+																<input class="form-check-input" type="radio" name="department" id="addDpt3" value="teacher" >
 																<label class="form-check-label" for="inlineRadio1">Sunday Sch Dept.</label>
 															</div>
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="department" id="inlineRadio2" value="theater" required>
+																<input class="form-check-input" type="radio" name="department" id="addDpt4" value="theater" >
 																<label class="form-check-label" for="inlineRadio2">Theater Ministry</label>
 															</div>
 														</div>
@@ -434,26 +417,26 @@
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Name *</label> 
-																<input class="form-control form-control-sm" type="text" name="emrgName" placeholder="Kofi Mensah" required> 
+																<input class="form-control form-control-sm" type="text" name="emergency_name" placeholder="Kofi Mensah" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Relationship  *</label> 
-																<input class="form-control form-control-sm" type="text" name="relationship" placeholder="eg..brother, wife, father" required> 
+																<input class="form-control form-control-sm" type="text" name="emergency_relation" placeholder="eg..brother, wife, father" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Phone *</label> 
-																<input class="form-control form-control-sm" type="text" name="phone" placeholder="024 xxx xxxx" required> 
+																<input class="form-control form-control-sm" type="text" name="emergency_phone" placeholder="024 xxx xxxx" > 
 															</div>
 														</div>
 													</div>
 													<ul class="list-inline pull-right">
 														<li><button type="button" class="default-btn prev-step">Back</button></li>
 														{{-- <li><button type="button" class="default-btn next-step skip-btn">Skip</button></li> --}}
-														<li><button type="button" class="default-btn next-step">Continue</button></li>
+														<li><button type="button" class="default-btn next-step submit_addform">Continue</button></li>
 													</ul>
 												</div>
 												<div class="tab-pane" role="tabpanel" id="step4">
@@ -483,24 +466,22 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 
+				<form role="form" enctype="multipart/form-data" class="login-box updateForm">
 
-
-				<div class="circle ">
-					<!-- User Profile Image -->
-					<img class="profile-pic upload-button" src="{{asset('images/avatar.png')}}">
-					<input class="file-upload" type="file" accept="image/*"/>
-				</div>
-				{{-- <div class="p-image">
-				<i class="material-icons  ">add_a_photo</i>
-					<input class="file-upload" type="file" accept="image/*"/>
-				</div> --}}
-				
+					<div class="circle ">
+						<!-- User Profile Image -->
+						<img class="profile-pic upload-button" src="{{asset('images/avatar.png')}}">
+						<input class="file-upload" type="file" accept="image/*"/>
+					</div>
+					{{-- <div class="p-image">
+					<i class="material-icons  ">add_a_photo</i>
+						<input class="file-upload" type="file" accept="image/*"/>
+					</div> --}}
 				  <br>
 				<div class="modal-body">
 					<section class="signup-step-container">
@@ -523,23 +504,23 @@
 											<ul>
 										</div>
 						
-										<form role="form" action="index.html" class="login-box">
+										
 											<div class="tab-content" id="main_form">
 												<div class="tab-pane active" role="tabpanel" id="updatestep1">
 													<h4 class="text-center">Personal Information</h4>
-													<div class="row">
+													<div class="row personalinfo">
 														<div class="col-md-2 pr-1">
 															<div class="form-group mt-4">
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Mr">
+																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="updatetitle1" value="Mr">
 																	<label class="form-check-label" for="inlineRadio1">Mr</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Mrs">
+																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="updatetitle2" value="Mrs">
 																	<label class="form-check-label" for="inlineRadio2">Mrs</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Miss">
+																	<input class="form-check-input" type="radio" name="inlineRadioOptions" id="updatetitle3" value="Miss">
 																	<label class="form-check-label" for="inlineRadio3">Miss</label>
 																</div>
 															</div>
@@ -567,19 +548,19 @@
 															<label class="font-weight-bold">Status</label>
 															<div class="form-group mt-0">
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="title" id="inlineRadio1" value="married" >
+																	<input class="form-check-input" type="radio" name="status" id="updatestatus1" value="married" >
 																	<label class="form-check-label" for="inlineRadio1">Married</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="title" id="inlineRadio2" value="widow" >
+																	<input class="form-check-input" type="radio" name="status" id="updatestatus2" value="widow" >
 																	<label class="form-check-label" for="inlineRadio2">Widow</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="title" id="inlineRadio3" value="single" >
+																	<input class="form-check-input" type="radio" name="status" id="updatestatus3" value="single" >
 																	<label class="form-check-label" for="inlineRadio3">Single</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="title" id="inlineRadio3" value="divorced" >
+																	<input class="form-check-input" type="radio" name="status" id="updatestatus4" value="divorced" >
 																	<label class="form-check-label" for="inlineRadio3">Divorced</label>
 																</div>
 															</div>
@@ -587,13 +568,13 @@
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Phone *</label> 
-																<input class="form-control form-control-sm" type="text" name="Phone" placeholder="020 xxx xxxx" > 
+																<input class="form-control form-control-sm" type="text" name="phone" placeholder="020 xxx xxxx" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Email Address *</label> 
-																<input class="form-control form-control-sm" type="email" name="name" placeholder="" > 
+																<input class="form-control form-control-sm" type="email" name="email" placeholder="" > 
 															</div>
 														</div>
 														
@@ -613,20 +594,20 @@
 															<label class="font-weight-bold">Employment Status</label>
 															<div class="form-group mt-0">
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="empStatus" id="inlineRadio1" value="employed" >
-																	<label class="form-check-label" for="inlineRadio1">Employed</label>
+																	<input class="form-check-input" type="radio" name="employmentstat" id="updateempStatus1" value="employed" >
+																	<label class="form-check-label" for="updateempStatus1">Employed</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="empStatus" id="inlineRadio2" value="unemployed" >
-																	<label class="form-check-label" for="inlineRadio2">Unemployed</label>
+																	<input class="form-check-input" type="radio" name="employmentstat" id="updateempStatus2" value="unemployed" >
+																	<label class="form-check-label" for="updateempStatus1">Unemployed</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="empStatus" id="inlineRadio3" value="retired"  >
-																	<label class="form-check-label" for="inlineRadio3">Retired</label>
+																	<input class="form-check-input" type="radio" name="employmentstat" id="updateempStatus3" value="retired"  >
+																	<label class="form-check-label" for="updateempStatus3">Retired</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input class="form-check-input" type="radio" name="empStatus" id="inlineRadio3" value="student" >
-																	<label class="form-check-label" for="inlineRadio3">Student</label>
+																	<input class="form-check-input" type="radio" name="employmentstat" id="updateempStatus4" value="student" >
+																	<label class="form-check-label" for="updateempStatus4">Student</label>
 																</div>
 															</div>
 														</div>	
@@ -646,126 +627,126 @@
 													</div>
 													<div class="float-right">
 														<input type="button" class="btn btn-outline-danger mr-2 btn-sm" data-dismiss="modal" value="Close">
-														<input type="submit" class="btn btn-outline-success btn-sm updatePersonalInfo" value="Save">
+														<input type="button" class="btn btn-outline-success btn-sm updatePersonalInfo1" onclick="update('personalinfo')" value="Save">
 													</div>
 																					
 												</div>
 												<div class="tab-pane" role="tabpanel" id="updatestep2">
 													<h4 class="text-center">Church Relational Info</h4>
-													<div class="row">
-													<div class="col-md-4">
-														<div class="form-group">
-															<label for="exampleFormControlSelect1">Example select</label>
-															<select class="form-control form-control-sm" id="exampleFormControlSelect1">
-															  <option>10 years and above</option>
-															  <option>5  years and above</option>
-															  <option>2  years and above</option>
-															  <option>1 year</option>
-															  <option>Just Joined</option>
-															</select>
-														  </div>
-													</div>
-													<div class="col-md-2">
-														<div class="form-group">
-															<label>Berea Center No. *</label> 
-															<input class="form-control form-control-sm" type="text" name="centerNo" placeholder=""> 
-														</div>
-													</div>
-													<div class="col-md-2 ml-5 pr-1">
-														<label class="font-weight-bold">Tithe</label>
-														<div class="form-group mt-0">
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="tithe" id="inlineRadio1" value="regular" >
-																<label class="form-check-label" for="inlineRadio1">Regular</label>
-															</div>
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="tithe" id="inlineRadio2" value="irregular" >
-																<label class="form-check-label" for="inlineRadio2">Irregular</label>
+													<div class="row  relationalinfo">
+														<div class="col-md-4">
+															<div class="form-group">
+																<label for="exampleFormControlSelect1">Period of Stay</label>
+																<select class="form-control form-control-sm" name="period_of_stay" id="exampleFormControlSelect1">
+																<option>10 years and above</option>
+																<option>5  years and above</option>
+																<option>2  years and above</option>
+																<option>1 year</option>
+																<option>Just Joined</option>
+																</select>
 															</div>
 														</div>
-													</div>
-													<div class="col-md-2 ml-5 pr-1">
-														<label class="font-weight-bold">Welfare</label>
-														<div class="form-group mt-0">
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="welfare" id="inlineRadio1" value="yes" >
-																<label class="form-check-label" for="inlineRadio1">Yes</label>
-															</div>
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="welfare" id="inlineRadio2" value="no" >
-																<label class="form-check-label" for="inlineRadio2">No</label>
+														<div class="col-md-2">
+															<div class="form-group">
+																<label>Berea Center No. *</label> 
+																<input class="form-control form-control-sm" type="text" name="berean_center" placeholder=""> 
 															</div>
 														</div>
-													</div>
-													<div class="col-md-4">
-														<label class="font-weight-bold">Ministry</label>
-														<div class="form-group mt-0">
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="ministry" id="inlineRadio1" value="men" >
-																<label class="form-check-label" for="inlineRadio1">Men </label>
-															</div>
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="ministry" id="inlineRadio2" value="women" >
-																<label class="form-check-label" for="inlineRadio2">Women</label>
-															</div>
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="ministry" id="inlineRadio2" value="youth" >
-																<label class="form-check-label" for="inlineRadio2">Youth</label>
+														<div class="col-md-2 ml-5 pr-1">
+															<label class="font-weight-bold">Tithe</label>
+															<div class="form-group mt-0">
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="tithe" id="updatetithe1" value="regular" >
+																	<label class="form-check-label" for="updatetithe1">Regular</label>
+																</div>
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="tithe" id="updatetithe2" value="irregular" >
+																	<label class="form-check-label" for="updatetithe2">Irregular</label>
+																</div>
 															</div>
 														</div>
-													</div>
-													
-													<div class="col-md-8">
-														<label class="font-weight-bold">Department</label>
-														<div class="form-group mt-0">
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="department" id="inlineRadio1" value="music" >
-																<label class="form-check-label" for="inlineRadio1">Music Ministry</label>
+														<div class="col-md-2 ml-5 pr-1">
+															<label class="font-weight-bold">Welfare</label>
+															<div class="form-group mt-0">
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="welfare" id="updatewelfare1" value="yes" >
+																	<label class="form-check-label" for="updatewelfare1">Yes</label>
+																</div>
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="welfare" id="updatewelfare2" value="no" >
+																	<label class="form-check-label" for="updatewelfare2">No</label>
+																</div>
 															</div>
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="department" id="inlineRadio2" value="usher" >
-																<label class="form-check-label" for="inlineRadio2">Protocol Department</label>
+														</div>
+														<div class="col-md-4">
+															<label class="font-weight-bold">Ministry</label>
+															<div class="form-group mt-0">
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="ministry" id="updateministry1" value="men" >
+																	<label class="form-check-label" for="updateministry1">Men </label>
+																</div>
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="ministry" id="updateministry2" value="women" >
+																	<label class="form-check-label" for="updateministry2">Women</label>
+																</div>
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="ministry" id="updateministry3" value="youth" >
+																	<label class="form-check-label" for="updateministry3">Youth</label>
+																</div>
 															</div>
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="department" id="inlineRadio1" value="teacher" >
-																<label class="form-check-label" for="inlineRadio1">Sunday Sch Dept.</label>
-															</div>
-															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="department" id="inlineRadio2" value="theater" >
-																<label class="form-check-label" for="inlineRadio2">Theater Ministry</label>
+														</div>
+														
+														<div class="col-md-8">
+															<label class="font-weight-bold">Department</label>
+															<div class="form-group mt-0">
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="department" id="updatedpt1" value="music" >
+																	<label class="form-check-label" for="updatedpt1">Music Ministry</label>
+																</div>
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="department" id="updatedpt2" value="usher" >
+																	<label class="form-check-label" for="updatedpt2">Protocol Department</label>
+																</div>
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="department" id="updatedpt3" value="teacher" >
+																	<label class="form-check-label" for="updatedpt3">Sunday Sch Dept.</label>
+																</div>
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="department" id="updatedpt4" value="theater" >
+																	<label class="form-check-label" for="updatedpt4">Theater Ministry</label>
+																</div>
 															</div>
 														</div>
 													</div>
 													<div class="float-right">
 														<input type="button" class="btn btn-outline-danger mr-2 btn-sm" data-dismiss="modal" value="Close">
-														<input type="submit" class="btn btn-outline-success btn-sm updateRelationalInfo" value="Save">
+														<input type="button" class="btn btn-outline-success btn-sm updateRelationalInfo2" onclick="update('relationalinfo')" value="Save">
 													</div>
 												</div>
-												</div>
-												<div class="tab-pane" role="tabpanel" id="updatestep3">
-													<h4 class="text-center">Emergency Contact</h4>
+												<div class="tab-pane emergencyinfo" role="tabpanel" id="updatestep3">
+													<h4 class="text-center ">Emergency Contact</h4>
 													 <div class="row">
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Name *</label> 
-																<input class="form-control form-control-sm" type="text" name="emrgName" placeholder="Kofi Mensah" > 
+																<input class="form-control form-control-sm" type="text" name="emergency_name" placeholder="Kofi Mensah" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Relationship  *</label> 
-																<input class="form-control form-control-sm" type="text" name="relationship" placeholder="eg..brother, wife, father" > 
+																<input class="form-control form-control-sm" type="text" name="emergency_relation" placeholder="eg..brother, wife, father" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Phone *</label> 
-																<input class="form-control form-control-sm" type="text" name="phone" placeholder="024 xxx xxxx" > 
+																<input class="form-control form-control-sm" type="text" name="emergency_phone" placeholder="024 xxx xxxx" > 
 															</div>
 														</div>
 													</div>
 													<input type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" value="Close">
-													<input type="submit" class="btn btn-outline-success btn-sm updateEmergencyInfo" value="Save">
+													<input type="button" class="btn btn-outline-success btn-sm updateEmergencyInfo3"onclick="update('emergencyinfo')"  value="Save">
 												</div>
 												<div class="clearfix"></div>
 											</div>
@@ -780,7 +761,6 @@
 				<div class="modal-footer">
 					
 				</div>
-			</form>
 		</div>
 	</div>
 </div>
@@ -816,14 +796,14 @@
 			<div class="modal-body">
 				<div class="circle circle-vw">
 					<!-- User Profile Image -->
-					<img class="profile-pic" src="{{asset('images/avatar.png')}}">
+					<img class="profile-pic view_pic" src="{{asset('images/avatar.png')}}">
 				</div>
 				<div class="card">
 					<h5 class="card-header">Personal Info</h5>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-4">
-								<p class=" viewname"><span class="title">Mr</span> Kofi Mensah</p>
+								<p class=" viewname"><span class="viewtitle">Mr</span> Kofi Mensah</p>
 							</div>
 							<div class="col-md-2">
 								<p >Age: <span class=" viewage">24</span> </p>
@@ -844,15 +824,16 @@
 								<p class=" viewaddress">tema, comm16; lashibi</p>
 							</div>
 							<div class="col-md-2">
-								<p class=" viewsemail">mensahkofi@gmail.com</p>
+								<p class=" viewemail">mensahkofi@gmail.com</p>
 							</div>
 							<div class="col-md-4">
-								<p > Hometown: <span class=" viewhometown">Sege, ada;</span><span class="viewregion">Greater Accra</span></p>
+								<p > Hometown: <span class=" viewhometown">Sege, ada;</span></p>
 							</div>
 							<div class="col-md-4">
-								<p class=" viewoccupation">Researchist, <span class="viewprofession"> crop and animal Researchist</span></p>
+								<p class=" viewoccupation  d-inline">Researchist, </p>, &nbsp; &nbsp; <p class="viewprofession  d-inline"> crop and animal Researchist</p>
 							</div>
-							<div class="col-md-2">
+
+							<div class="col-md-2 mt-3">
 								<p class=" viewemploymentstat">Employed</p>
 							</div>
 						</div>					
@@ -976,13 +957,13 @@
 
     $(".next-step").click(function (e) {
 
-        var active = $('.wizard .nav-tabs li.active');
-        active.next().removeClass('disabled');
+        var active = $('.addWizard .nav-tabs li.active');
+		active.next().removeClass('disabled');
         nextTab(active);
 
     });
     $(".prev-step").click(function (e) {
-        var active = $('.wizard .nav-tabs li.active');
+        var active = $('.addWizard .nav-tabs li.active');
         prevTab(active);
 
     });
