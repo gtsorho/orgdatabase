@@ -34,11 +34,11 @@
 			<div class="table-title fixed-top">
 				<div class="row">
 					<div class="col-sm-4">
-						<h2 class="ml-3">Lev<b>Data</b></h2>
+						<img class="mb-4" src="{{asset('images/aglogo.png')}}" alt="" width="40" height="40">
 					</div>
 					<div class="col-sm-4">
 						<div class="input-group searchBox">
-							<input type="text" placeholder="search" class="form-control search_input mb-1">
+							<input type="text" placeholder="search" class="form-control search_input mb-1" >
 							<i class="material-icons m-2" style="font-size: 20px">search</i>
 						</div>
 					</div>
@@ -66,71 +66,6 @@
 					</tr>
 				</thead>
 				<tbody class="member_info">
-					
-					{{-- <tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-						</td>
-						<td>Dominique Perrier</td>
-						<td>dominiqueperrier@mail.com</td>
-						<td>Obere Str. 57, Berlin, Germany</td>
-						<td>(313) 555-5735</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-							</span>
-						</td>
-						<td>Maria Anders</td>
-						<td>mariaanders@mail.com</td>
-						<td>25, rue Lauriston, Paris, France</td>
-						<td>(503) 555-9931</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-							</span>
-						</td>
-						<td>Fran Wilson</td>
-						<td>franwilson@mail.com</td>
-						<td>C/ Araquil, 67, Madrid, Spain</td>
-						<td>(204) 619-5731</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>					
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>Martin Blank</td>
-						<td>martinblank@mail.com</td>
-						<td>Via Monte Bianco 34, Turin, Italy</td>
-						<td>(480) 631-2097</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>  --}}
 				</tbody>
 			</table>
 			<div class="clearfix">
@@ -234,20 +169,20 @@
 															<label class="font-weight-bold">Status</label>
 															<div class="form-group mt-0">
 																<div class="form-check form-check-inline mr-1">
-																	<input  class="form-check-input" type="radio" name="status" id="inlineRadio1" value="married" >
-																	<label class="form-check-label" for="inlineRadio1">Married</label>
+																	<input  class="form-check-input" type="radio" name="status" id="addinlineRadio1" value="married" >
+																	<label class="form-check-label" for="addinlineRadio1">Married</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input  class="form-check-input" type="radio" name="status" id="inlineRadio2" value="widow" >
-																	<label class="form-check-label" for="inlineRadio2">Widow</label>
+																	<input  class="form-check-input" type="radio" name="status" id="addinlineRadio2" value="widow" >
+																	<label class="form-check-label" for="addinlineRadio2">Widow</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input  class="form-check-input" type="radio" name="status" id="inlineRadio3" value="single" >
-																	<label class="form-check-label" for="inlineRadio3">Single</label>
+																	<input  class="form-check-input" type="radio" name="status" id="addinlineRadio3" value="single" >
+																	<label class="form-check-label" for="addinlineRadio3">Single</label>
 																</div>
 																<div class="form-check form-check-inline mr-1">
-																	<input  class="form-check-input" type="radio" name="status" id="inlineRadio3" value="divorced" >
-																	<label class="form-check-label" for="inlineRadio3">Divorced</label>
+																	<input  class="form-check-input" type="radio" name="status" id="addinlineRadio4" value="divorced" >
+																	<label class="form-check-label" for="addinlineRadio4">Divorced</label>
 																</div>
 															</div>
 														</div>	
@@ -375,7 +310,7 @@
 																<label class="form-check-label" for="inlineRadio2">Women</label>
 															</div>
 															<div class="form-check form-check-inline mr-1">
-																<input class="form-check-input" type="radio" name="ministry" id="addmin2" value="youth" >
+																<input class="form-check-input" type="radio" name="ministry" id="addmin3" value="youth" >
 																<label class="form-check-label" for="inlineRadio2">Youth</label>
 															</div>
 														</div>
@@ -445,7 +380,7 @@
 														<h6 class="text-center">Completed</h6>
 													<ul class="list-inline pull-right">
 														<li><button type="button" class="default-btn prev-step">Back</button></li>
-														<li><button type="button" class="default-btn next-step">Finish</button></li>
+														<li><button type="button" class="default-btn next-step" onclick="location.reload()">Finish</button></li>
 													</ul>
 												</div>
 												<div class="clearfix"></div>
@@ -636,8 +571,8 @@
 													<div class="row  relationalinfo">
 														<div class="col-md-4">
 															<div class="form-group">
-																<label for="exampleFormControlSelect1">Period of Stay</label>
-																<select class="form-control form-control-sm" name="period_of_stay" id="exampleFormControlSelect1">
+																<label for="exampleFormControlSelect2">Period of Stay</label>
+																<select class="form-control form-control-sm" name="period_of_stay" id="exampleFormControlSelect2">
 																<option>10 years and above</option>
 																<option>5  years and above</option>
 																<option>2  years and above</option>
@@ -745,8 +680,10 @@
 															</div>
 														</div>
 													</div>
-													<input type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" value="Close">
-													<input type="button" class="btn btn-outline-success btn-sm updateEmergencyInfo3"onclick="update('emergencyinfo')"  value="Save">
+													<div class="float-right">
+														<input type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" value="Close">
+														<input type="button" class="btn btn-outline-success btn-sm updateEmergencyInfo3"onclick="update('emergencyinfo')"  value="Save">
+													</div>
 												</div>
 												<div class="clearfix"></div>
 											</div>
@@ -779,7 +716,27 @@
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
+					<input type="button" id="deleteData" class="btn btn-danger" value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="deleteEmployeeModal2" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Employee</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" id="deleteSingleData" class="btn btn-danger" value="Delete">
 				</div>
 			</form>
 		</div>
@@ -793,48 +750,48 @@
 				<h4 class="modal-title">Profile</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body view_profile">
 				<div class="circle circle-vw">
 					<!-- User Profile Image -->
 					<img class="profile-pic view_pic" src="{{asset('images/avatar.png')}}">
 				</div>
-				<div class="card">
+				<div class="card " >
 					<h5 class="card-header">Personal Info</h5>
-					<div class="card-body">
-						<div class="row">
+					<div class="card-body ">
+						<div class="row ">
 							<div class="col-md-4">
-								<p class=" viewname"><span class="viewtitle">Mr</span> Kofi Mensah</p>
+								<span style="font-weight: 100" class="viewtitle d-inline">Mr</span> <p style="font-weight: bold" class=" viewname d-inline"> Kofi Mensah</p>
 							</div>
 							<div class="col-md-2">
-								<p >Age: <span class=" viewage">24</span> </p>
+								<p style="font-weight: bold" >Age: <span style="font-weight: 100" class=" viewage">24</span> </p>
 							</div>
 							<div class="col-md-2">
-								<p >DoB: <span class=" viewdob">dd/mm/yy</span> </p>
+								<p style="font-weight: bold" >DoB: <span style="font-weight: 100" class=" viewdob">dd/mm/yy</span> </p>
 							</div>
 							<div class="col-md-2">
-								<p class=" viewsex">male</p>
+								<p style="font-weight: bold">Sex: <span style="font-weight: 100" class=" viewsex">male</span></p>
 							</div>
 							<div class="col-md-2">
-								<p class=" viewstatus">single</p>
+								<p style="font-weight: bold">Status: <span style="font-weight: 100" class=" viewstatus">single</span></p>
 							</div>
 							<div class="col-md-2">
-								<p class=" viewphone">024 xxx xxxx</p>
-							</div>
-							<div class="col-md-4">
-								<p class=" viewaddress">tema, comm16; lashibi</p>
-							</div>
-							<div class="col-md-2">
-								<p class=" viewemail">mensahkofi@gmail.com</p>
+								<p style="font-weight: bold">Phone: <span style="font-weight: 100" class=" viewphone">024 xxx xxxx</span></p>
 							</div>
 							<div class="col-md-4">
-								<p > Hometown: <span class=" viewhometown">Sege, ada;</span></p>
+								<p style="font-weight: bold">Address: <span style="font-weight: 100" class=" viewaddress">tema, comm16; lashibi</span></p>
+							</div>
+							<div class="col-md-2">
+								<p style="font-weight: bold">Email: <span style="font-weight: 100" class=" viewemail">mensahkofi@gmail.com</span></p>
 							</div>
 							<div class="col-md-4">
-								<p class=" viewoccupation  d-inline">Researchist, </p>, &nbsp; &nbsp; <p class="viewprofession  d-inline"> crop and animal Researchist</p>
+								<p style="font-weight: bold" > Hometown: <span style="font-weight: 100" class=" viewhometown">Sege, ada;</span></p>
+							</div>
+							<div class="col-md-4">
+								<p class=" viewoccupation  d-inline" style="font-weight: bold">Researchist, </p>, &nbsp; &nbsp; <p class="viewprofession  d-inline"> crop and animal Researchist</p>
 							</div>
 
-							<div class="col-md-2 mt-3">
-								<p class=" viewemploymentstat">Employed</p>
+							<div class="col-md-2">
+								<p style="font-weight: bold" class=" viewemploymentstat">Employed</p>
 							</div>
 						</div>					
 					</div>
@@ -844,22 +801,22 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-4">
-								<p>Period: <span class="viewperiod">10 years and above</span></p>
+								<p style="font-weight: bold">Period: <span style="font-weight: 100" class="viewperiod">10 years and above</span></p>
 							</div>
 							<div class="col-md-2">
-								<p>Berean Center: <span class="viewberea">5</span></p>
+								<p style="font-weight: bold">Berean Center: <span style="font-weight: 100" class="viewberea">5</span></p>
 							</div>
 							<div class="col-md-2">
-								<p>Ministry: <span class=" viewministry"> Youth</span></p>
+								<p style="font-weight: bold">Ministry: <span style="font-weight: 100" class=" viewministry"> Youth</span></p>
 							</div>
 							<div class="col-md-4">
-								<p>Tithe: <span class=" viewtithe"> regular</span></p>
+								<p style="font-weight: bold">Tithe: <span style="font-weight: 100" class=" viewtithe"> regular</span></p>
 							</div>
 							<div class="col-md-2">
-								<p class=" ">welfare: <span class="viewwelfare">yes</span></p>
+								<p style="font-weight: bold" class=" ">welfare: <span style="font-weight: 100" class="viewwelfare">yes</span></p>
 							</div>
 							<div class="col-md-2">
-								<p >Department: <span class=" viewdepartment"> Sunday school</span></p>
+								<p style="font-weight: bold" >Department: <span style="font-weight: 100" class=" viewdepartment"> Sunday school</span></p>
 							</div>
 						</div>					
 					</div>
@@ -869,13 +826,13 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-4">
-								<p class=" viewemergencyname">yaw mensah</p>
+								<p style="font-weight: bold"  class=" viewemergencyname">yaw mensah</p>
 							</div>
 							<div class="col-md-2">
-								<p class=" viewemergencyphone">024 xxx xxxx</p>
+								<p style="font-weight: bold"  class=" viewemergencyphone">024 xxx xxxx</p>
 							</div>
 							<div class="col-md-4">
-								<p>Relationship: <span class=" viewemergencyrelation">brother </span> </p>
+								<p style="font-weight: bold" >Relationship: <span style="font-weight: 100" class=" viewemergencyrelation">brother </span> </p>
 							</div>
 						</div>					
 					</div>
@@ -888,29 +845,16 @@
 	</div>
 </div>
 
+<a href="#" class="btn btn-warning" id="export"><i class="material-icons">&#xe873;</i> <span>Export</span></a>						
+
+
 <script>
 	$(document).ready(function(){
 	// Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
 	
 	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
+	
 
 	var readURL = function(input) {
 		if (input.files && input.files[0]) {
@@ -929,7 +873,9 @@
 		readURL(this);
 	});
 
-	$(".upload-button").on('click', function() {
+	$(".upload-button").on('click', function(e) {
+		e.stopImmediatePropagation();
+		e.preventDefault()
 		$(".file-upload").click();
     });
     

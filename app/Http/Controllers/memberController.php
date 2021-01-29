@@ -45,7 +45,7 @@ class memberController extends Controller
             'emergency_name' => [ 'required','string'],
             'emergency_phone' => [ 'required','string',  'max:15'],
             'emergency_relation' => [ 'required','string'],
-            'image' => [ 'file', 'image', 'max:5000']
+            'image' => [ 'file', 'max:5000','mimes:jpeg,jpg,png,bmp,tiff']
         ]);
 
         if ($validator->fails())
@@ -123,6 +123,8 @@ class memberController extends Controller
           }
     }
     public function delete(request $request){
+        $imgPath = personalinfo::where('id', $request->member_id)->first()->profileImg;
+        Storage::disk('public')->delete($imgPath);
         personalinfo::where('id', $request->member_id)->delete();
         return response()->json(['status'=>'success', 'message'=> 'delete successful']);
     }
