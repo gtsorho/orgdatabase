@@ -128,6 +128,12 @@ $(document).ready(function(){
         var response = data.data
         for(var i = 0; i < response.length; i++ ){
             console.log(data)
+            var imgPath = `storage/${response[i].profileImg}`
+            if(!response[i].profileImg){
+                imgPath = `images/avatar.png`
+                
+            }
+
             $('.member_info').append(`
                 <tr>
                     <td>
@@ -136,7 +142,7 @@ $(document).ready(function(){
                             <label for="checkbox${response[i].id}"></label>
                         </span>
                     </td>
-                        <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal"><img src="storage/${response[i].profileImg}" alt="Avatar" class="avatar"></td>
+                        <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal"><img src="${imgPath}" alt="Avatar" class="avatar"></td>
                         <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal">${response[i].name}</td>
                         <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal">${response[i].email}</td>
                         <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal">${response[i].address}</td>
@@ -305,6 +311,11 @@ $(document).ready(function(){
                  "Authorization": `Bearer ${token}`
              },
              success: function(data) {
+                 if(data[0].profileImg){
+                    $('.view_pic').attr("src", `storage/${data[0].profileImg}`)
+                }else{
+                    $('.view_pic').attr("src", `images/avatar.png`)
+                }
                  console.log(data)
                  $('.viewtitle').text(data[0].title)
                  $('.viewname').text(data[0].name)
@@ -328,7 +339,7 @@ $(document).ready(function(){
                  $('.viewemergencyname').text(data[0].emergency_name)
                  $('.viewemergencyphone').text(data[0].emergency_phone)
                  $('.viewemergencyrelation').text(data[0].emergency_relation)
-                 $('.view_pic').attr("src", `storage/${data[0].profileImg}`)
+                 
              },
              error: function (data){
                  console.log(data)

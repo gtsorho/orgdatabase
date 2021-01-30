@@ -136,6 +136,7 @@ class memberController extends Controller
                             ->select('personalinfos.*', 'relationalinfos.*', 'emergencyinfos.*')
                             ->paginate(5);
 
+        
         return response()->json($members);
     }
 
