@@ -26,7 +26,7 @@ class memberController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => ['required','string'], 
             'name' => ['required','string', 'max:25'],
-            'email' =>[ 'email:rfc','max:30'],   
+            'email' => ['nullable', 'email:rfc','max:30'],   
             'phone' =>[ 'required','string', 'max:15'],
             'dob' =>[ 'date'],
             'address' => [ 'required','string'],
@@ -88,7 +88,7 @@ class memberController extends Controller
 
         $imagesql = $this->storeImg($request, $personalsql->id);
 
-        return response()->json([$personalsql, $relationalsql, $emergencysql, $imagesql]);     
+        return response()->json([$personalsql, $relationalsql, $emergencysql, $imagesql , 'status'=>'success']);     
     }
     
     public function update(request $request){

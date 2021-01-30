@@ -164,7 +164,7 @@
 															</div>
 														</div>
 														<div class="col-md-4 pr-1">
-															<label class="font-weight-bold">Status</label>
+															<label class="font-weight-bold">Status*</label>
 															<div class="form-group mt-0">
 																<div class="form-check form-check-inline mr-1">
 																	<input  class="form-check-input" type="radio" name="status" id="addinlineRadio1" value="married" >
@@ -186,31 +186,31 @@
 														</div>	
 														<div class="col-md-4">
 															<div class="form-group">
-																<label>Phone *</label> 
+																<label>Phone*</label> 
 																<input  class="form-control form-control-sm" type="text" name="phone" placeholder="020 xxx xxxx" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
-																<label>Email Address *</label> 
+																<label>Email Address</label> 
 																<input  class="form-control form-control-sm" type="email" name="email" placeholder="" > 
 															</div>
 														</div>
 														
 														<div class="col-md-6">
 															<div class="form-group">
-																<label>Resdential Address *</label> 
+																<label>Resdential Address*</label> 
 																<input  class="form-control form-control-sm" type="text" name="address" placeholder="Tema comm16, lashibi, Gas station" > 
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																<label>Hometown & Region *</label> 
+																<label>Hometown & Region*</label> 
 																<input  class="form-control form-control-sm" type="text" name="hometown" placeholder="Sege, Ada; Greater Accra " > 
 															</div>
 														</div>
 														<div class="col-md-4 pr-1">
-															<label class="font-weight-bold">Employment Status</label>
+															<label class="font-weight-bold">Employment Status*</label>
 															<div class="form-group mt-0">
 																<div class="form-check form-check-inline mr-1">
 																	<input  class="form-check-input" type="radio" name="employmentstat" id="addempstat1" value="employed" >
@@ -232,13 +232,13 @@
 														</div>	
 														<div class="col-md-4">
 															<div class="form-group">
-																<label>Occupation *</label> 
+																<label>Occupation*</label> 
 																<input  class="form-control form-control-sm" type="text" name="occupation" placeholder="Reseacher or shs" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
-																<label>Field of Profession  *</label> 
+																<label>Field of Profession*</label> 
 																<input  class="form-control form-control-sm" type="text" name="profession" placeholder="crop Researchist or General Science" > 
 															</div>
 														</div>
@@ -254,7 +254,7 @@
 													<div class="row">
 													<div class="col-md-4">
 														<div class="form-group">
-															<label for="exampleFormControlSelect1">Period of Stay</label>
+															<label for="exampleFormControlSelect1">Period of Stay*</label>
 															<select class="form-control form-control-sm" name="period_of_stay" id="exampleFormControlSelect1">
 															  <option>10 years and above</option>
 															  <option>5  years and above</option>
@@ -266,12 +266,12 @@
 													</div>
 													<div class="col-md-2">
 														<div class="form-group">
-															<label>Berea Center No. *</label> 
+															<label>Berea Center No.*</label> 
 															<input class="form-control form-control-sm" type="text" name="berean_center" placeholder=""> 
 														</div>
 													</div>
 													<div class="col-md-2 ml-5 pr-1">
-														<label class="font-weight-bold">Tithe</label>
+														<label class="font-weight-bold">Tithe*</label>
 														<div class="form-group mt-0">
 															<div class="form-check form-check-inline mr-1">
 																<input class="form-check-input" type="radio" name="tithe" id="addtithe1" value="regular" >
@@ -284,7 +284,7 @@
 														</div>
 													</div>
 													<div class="col-md-2 ml-5 pr-1">
-														<label class="font-weight-bold">Welfare</label>
+														<label class="font-weight-bold">Welfare*</label>
 														<div class="form-group mt-0">
 															<div class="form-check form-check-inline mr-1">
 																<input class="form-check-input" type="radio" name="welfare" id="addwelfare1" value="yes" >
@@ -297,7 +297,7 @@
 														</div>
 													</div>
 													<div class="col-md-4">
-														<label class="font-weight-bold">Ministry</label>
+														<label class="font-weight-bold">Ministry*</label>
 														<div class="form-group mt-0">
 															<div class="form-check form-check-inline mr-1">
 																<input class="form-check-input" type="radio" name="ministry" id="addmin1" value="men" >
@@ -315,7 +315,7 @@
 													</div>
 													
 													<div class="col-md-8">
-														<label class="font-weight-bold">Department</label>
+														<label class="font-weight-bold">Department*</label>
 														<div class="form-group mt-0">
 															<div class="form-check form-check-inline mr-1">
 																<input class="form-check-input" type="radio" name="department" id="addDpt1" value="music" >
@@ -349,19 +349,19 @@
 													 <div class="row">
 														<div class="col-md-4">
 															<div class="form-group">
-																<label>Name *</label> 
+																<label>Name*</label> 
 																<input class="form-control form-control-sm" type="text" name="emergency_name" placeholder="Kofi Mensah" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
-																<label>Relationship  *</label> 
+																<label>Relationship*</label> 
 																<input class="form-control form-control-sm" type="text" name="emergency_relation" placeholder="eg..brother, wife, father" > 
 															</div>
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
-																<label>Phone *</label> 
+																<label>Phone*</label> 
 																<input class="form-control form-control-sm" type="text" name="emergency_phone" placeholder="024 xxx xxxx" > 
 															</div>
 														</div>
@@ -373,9 +373,9 @@
 													</ul>
 												</div>
 												<div class="tab-pane" role="tabpanel" id="step4">
-													<h4 class="text-center">Finalize</h4>
-														<p class="text-center"><b>FINISH</b> will store all data entries, cross-check and verify before submit. </p>
-														<h6 class="text-center">Completed</h6>
+													<h4 class="text-center finalize">Finalize</h4>
+														<div class="finalize_msg row" ></div>
+														<h6 class="text-center finalize_foot">Completed</h6>
 													<ul class="list-inline pull-right">
 														<li><button type="button" class="default-btn prev-step">Back</button></li>
 														<li><button type="button" class="default-btn next-step" onclick="location.reload()">Finish</button></li>

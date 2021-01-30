@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <!-- Custom styles for this template -->
     <link href="{{asset('css/signin.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Sacramento|Cinzel|Montserrat">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Sacramento|Cinzel|Montserrat|Dancing Script">
     <link rel="stylesheet" href="{{asset('fontawesome/css/all.css')}}">
   </head>
 
   <body class="text-center">
     <form class="form-signin">
       <img class="mb-4" src="{{asset('images/aglogo2.png')}}" alt="logo" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please SignIn</h1>
+      <h1 class="h3 mb-3 font-weight-normal">SignIn</h1>
       <div class="form-group">
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control p-1" placeholder="Email address" required  >

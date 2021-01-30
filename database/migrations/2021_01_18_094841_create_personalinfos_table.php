@@ -18,7 +18,7 @@ class CreatePersonalinfosTable extends Migration
             $table->string('profileImg')->nullable();
             $table->string('title');
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone');
             $table->string('dob');
             $table->string('address');

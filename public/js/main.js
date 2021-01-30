@@ -30,8 +30,34 @@ $(document).ready(function(){
                 },
                 success: function(data)
                 {
-                    console.log(data)
-                    $(".addForm").trigger("reset")
+                    if(data.status == 'error'){
+                        console.log(data)
+                        var err = data.error
+                        $('.finalize').html(`<i class="material-icons" style="font-size: 21px; margin-right: 5px;">&#xe001;</i>Error`)
+                        $('.finalize').addClass('text-danger')
+                        $('.finalize_msg').html('')
+                        for(i=0; i<err.length; i++){
+                            $('.finalize_msg').append(`
+                            <p class="text-danger"><b>&nbsp;&nbsp;${i+1}.</b> ${err[i]}  </p>
+                        `) 
+                        }  
+                        $('.finalize_foot').html(`
+                            <div class="alert alert-danger" role="alert">
+                            Invalid Fields Submitted
+                            </div>
+                        `)
+                        $('.finalize_foot').addClass('text-danger')                                     
+                    }else if(data.status == 'success'){
+                        $('.finalize').html(`Finalize`)
+                        $('.finalize').removeClass('text-danger')
+                        $('.finalize').addClass('text-success')
+                        $('.finalize_msg').removeClass('row')
+                        $('.finalize_msg').html(`<p class=" text-center text-muted">Member Added Sucessfully, visit dashboard to view Member</p>`)
+                        $('.finalize_foot').text('Completed')
+                        $('.finalize_foot').removeClass('text-danger')  
+                        $('.finalize_foot').addClass('text-success')
+                        $(".addForm").trigger("reset")
+                    }
                     // location.reload()
 
                 },
@@ -177,10 +203,10 @@ $(document).ready(function(){
                  }
             });
         }
-        
+        $('.pagination_li').html('');
         for(var i = 1; i <= data.last_page; i++ ){
             $('.pagination_li').append(`
-                <li class="page-item"><a href="#" onclick='pageView(${i})' class="page-link">${i}</a></li>
+                <li class="page-item" id="active${i}"><a href="#" onclick='pageView(${i})' class="page-link">${i}</a></li>
             `) 
         }
     }
@@ -188,6 +214,8 @@ $(document).ready(function(){
     var page
     window.previous_page = function (){
         console.log(page)
+        $('.page-item').attr('class', 'page-item')
+
         if(page.prev_page_url){
             $.ajax({
                 type: 'get',
@@ -202,6 +230,7 @@ $(document).ready(function(){
                    $('.pagination_li').html('')
                    $('.member_info').html('')
                    viewAll_action(data)
+                   $(`#active${data.current_page}`).attr('class','page-item active' )
        
                 },
                 error:function(data){
@@ -211,6 +240,7 @@ $(document).ready(function(){
         }
     }
  window.next_page = function (){
+    $('.page-item').attr('class', 'page-item')
      console.log(page)
      if(page.next_page_url){
         $.ajax({
@@ -226,6 +256,7 @@ $(document).ready(function(){
                $('.pagination_li').html('')
                $('.member_info').html('')
                viewAll_action(data)
+               $(`#active${data.current_page}`).attr('class','page-item active' )
    
             },
             error:function(data){
@@ -235,6 +266,7 @@ $(document).ready(function(){
      }
  }
      window.pageView = function (i){
+        $('.page-item').attr('class', 'page-item')
          $.ajax({
              type: 'get',
              url: `api/viewall?page=${i}`,
@@ -248,6 +280,7 @@ $(document).ready(function(){
                 $('.pagination_li').html('')
                 $('.member_info').html('')
                 viewAll_action(data)
+                $(`#active${data.current_page}`).attr('class','page-item active' )
  
              },
              error:function(data){
