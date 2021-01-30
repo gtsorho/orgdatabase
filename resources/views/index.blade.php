@@ -33,18 +33,20 @@
 		<div class="table-wrapper">
 			<div class="table-title fixed-top">
 				<div class="row">
-					<div class="col-sm-4">
-						<img class="mb-4" src="{{asset('images/aglogo.png')}}" alt="" width="40" height="40">
+					<div class="col-sm-4" id="logoCol">
+						<img class="mb-4 mr-1 float-left" src="{{asset('images/aglogo.png')}}" alt="" width="40" height="40">
+						<p style="display: inline;" id="nameP">LPWC Assemblies of God</p>
+						<p style="margin: 0px 40px;" id="databaseP">DataBase</p>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-4" id="searchCol">
 						<div class="input-group searchBox">
 							<input type="text" placeholder="search" class="form-control search_input mb-1" >
 							<i class="material-icons m-2" style="font-size: 20px">search</i>
 						</div>
 					</div>
-					<div class="col-sm-4">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+					<div class="col-sm-4" id="addDelCol">
+						<a href="#addEmployeeModal" id="navAddBtn" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
+						<a href="#deleteEmployeeModal" id='navDelBtn' class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 					</div>
 				</div>
 			</div>
@@ -69,15 +71,11 @@
 				</tbody>
 			</table>
 			<div class="clearfix">
-				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+				<div class="hint-text">Showing <b class="allPerPage">5</b> out of <b class="allEntries">25</b> entries</div>
 				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+						<li class="page-item " onclick='previous_page()'  ><a href="#" class="page-link">Previous</a></li>
+                        <span class="pagination_li" style="display:inline-flex" ></span>
+                        <li class="page-item " onclick='next_page()' ><a href="#" class="page-link">Next</a></li>
 				</ul>
 			</div>
 		</div>
@@ -149,20 +147,20 @@
 
 														<div class="col-md-6">
 															<div class="form-group">
-																<label>First and Last Name *</label> 
+																<label>First and Last Name*</label> 
 																<input  class="form-control form-control-sm" type="text" name="name" placeholder=""  > 
 															</div>
 														</div>
 														<div class="col-md-2" style="max-width: 20%">
 															<div class="form-group">
-																<label>DoB  *</label> 
+																<label>DoB*</label> 
 																<input  class="form-control form-control-sm" type="date" name="dob" placeholder=""  > 
 															</div>
 														</div>
 														<div class="col-md-2" style="max-width: 10%">
 															<div class="form-group">
-																<label>Age  *</label> 
-																<input  class="form-control form-control-sm" type="number" name="age" placeholder="22"  > 
+																<label>Age*</label> 
+																<input  class="form-control form-control-sm" type="number" name="age" placeholder="22"  style="width:200%"> 
 															</div>
 														</div>
 														<div class="col-md-4 pr-1">
@@ -845,8 +843,11 @@
 	</div>
 </div>
 
-<a href="#" class="btn btn-warning" id="export"><i class="material-icons">&#xe873;</i> <span>Export</span></a>						
-
+<style>
+	
+</style>
+<a href="#" class="btn btn-warning" id="export"><i class="material-icons">&#xe873;</i> <span>Export</span></a><br><br>					
+<small style="display: none" class="text-muted float-right mr-5 " id="exportNote"><i class="material-icons">&#xe001;</i>  Export all members from DataBase</small>
 
 <script>
 	$(document).ready(function(){

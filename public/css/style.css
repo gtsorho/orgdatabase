@@ -12,6 +12,7 @@ body {
 
 .table-responsive {
     margin: 30px 0;
+    margin-top: 10px;
 }
 .table-wrapper {
 	background: #fff;
@@ -137,6 +138,9 @@ table.table .avatar {
 }	
 .pagination li.active a, .pagination li.active a.page-link {
 	background: #03A9F4;
+}
+.page-link:focus{
+    box-shadow: none;
 }
 .pagination li.active a:hover {        
 	background: #0397d6;
@@ -373,7 +377,16 @@ button:focus,
     border: none;
     outline: none !important;
     margin-left: 10px;
-    margin-right: 12px;
+    margin-right: 90px;
+}
+#export:hover ~ #exportNote{
+    display: block !important;
+    color: #d25700 !important;   
+}
+#exportNote i{
+    float: left;
+    font-size: 15px;
+    margin-right: 5px;
 }
 #export i{
     float: left;
@@ -687,4 +700,53 @@ input[type="checkbox"]:checked::before{
 	.signup-logo-header .header-flex{
 		display: block;
 	}
+}
+@media only screen and (max-width: 600px) {
+    #logoCol{
+        width: fit-content;
+    }
+    #searchCol{
+        width: 50%;
+    }
+    #addDelCol{
+        width: min-content;
+    }
+    #nameP{
+        display: none !important;
+    }
+    #databaseP{
+        display: none;
+    }
+    #navAddBtn{
+        margin: unset;
+        padding: 0px 12px;
+        margin-bottom: 4px;
+    }
+    #navDelBtn{
+        padding: 0px 12px;
+        
+    }
+    #navAddBtn span{
+       display:none
+    }
+    #navDelBtn span{
+        display:none
+    }
+    
+}
+@media only screen and (max-width: 800px) {
+    #navAddBtn span{
+       display:none
+    }
+    #navDelBtn span{
+        display:none
+    }
+    #databaseP{
+        display: none;
+    }
+}
+@media only screen and (max-width: 320px) {
+    #addDelCol{
+        padding:0px;
+    }    
 }

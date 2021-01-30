@@ -19,7 +19,8 @@
 
   <body class="text-center">
     <form class="form-signin">
-      gradient      <h1 class="h3 mb-3 font-weight-normal">Please SignIn</h1>
+      <img class="mb-4" src="{{asset('images/aglogo2.png')}}" alt="logo" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please SignIn</h1>
       <div class="form-group">
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control p-1" placeholder="Email address" required  >

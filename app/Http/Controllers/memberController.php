@@ -18,7 +18,7 @@ class memberController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api', ['except'=>'export']);
     }
 
     public function store(request $request){
@@ -152,14 +152,14 @@ class memberController extends Controller
 
     public function search(request $request){
         $searchResults = (new Search())
-                    ->registerModel(personalinfo::class, ['name', 'title'])
+                    ->registerModel(personalinfo::class, ['name', 'title','email'])
                     ->search($request->search);
         return response()->json($searchResults->paginate(5)); 
         
     }
 
     public function export(){
-        return new userExport;
+        return response()->json('export');
     }
 
     // *****************************

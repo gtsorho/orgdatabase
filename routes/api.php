@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\memberController;
+use App\Exports\userExport;
 use Illuminate\Http\Request;
+use App\Http\Controllers\memberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::get('/viewall', 'memberController@viewall');
 Route::post('/search', 'memberController@search');
 Route::get('/export', 'memberController@export');
 Route::post('/viewone', 'memberController@viewone');
+Route::get('/exportuser', function () {
+    return new userExport;
+});
