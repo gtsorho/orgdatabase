@@ -17,12 +17,10 @@ class emergencyinfo extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
      {
-        $url = route('/', $this->slug);
      
          return new \Spatie\Searchable\SearchResult(
             $this,
-            $this->title,
-            $url
+            $this->member_id
          );
      }
 }

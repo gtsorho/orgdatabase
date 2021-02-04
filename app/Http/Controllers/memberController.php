@@ -99,15 +99,22 @@ class memberController extends Controller
         switch ($update_flavour){
             case "personalinfo":
                 $updatesql = personalinfo::where('id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id', 'profile_path','image'])));
-                
+                $personalinfo_array = array();
                 if($request->has('image')){
-                    $img_delete = Storage::disk('public')->delete($request->profile_path);
+                    $imgPath = personalinfo::where('id',$request->update_id)->first()->profileImg;
+                    if(!$imgPath){
+                        $updatemsg = $this->storeImg($request, $request->update_id);
+                    }
+                    $img_delete = Storage::disk('public')->delete($imgPath);
+                    $personalinfo_array['path'] = $imgPath;
                     if($img_delete){
-                        $this->storeImg($request, $request->update_id);
+                       $updatemsg = $this->storeImg($request, $request->update_id);
+                       $personalinfo_array['updatemsg'] = $updatemsg;
                     }
                 }
-
-                return response()->json(['status'=>'success', 'message'=> 'update successful']);
+                $personalinfo_array['message'] = 'update successful';
+               
+                return response()->json($personalinfo_array);
 
                 break;
 
@@ -136,7 +143,7 @@ class memberController extends Controller
                             ->select('personalinfos.*', 'relationalinfos.*', 'emergencyinfos.*')
                             ->paginate(5);
 
-        
+
         return response()->json($members);
     }
 
@@ -153,9 +160,38 @@ class memberController extends Controller
 
     public function search(request $request){
         $searchResults = (new Search())
-                    ->registerModel(personalinfo::class, ['name', 'title','email'])
-                    ->search($request->search);
-        return response()->json($searchResults->paginate(5)); 
+                        ->registerModel(personalinfo::class, [
+                            'title',
+                            'name' ,
+                            'email',   
+                            'phone',
+                            'dob',
+                            'address',
+                            'hometown',
+                            'age' ,
+                            'status',
+                            'employmentstat',
+                            'occupation',
+                            'profession',
+                        ])->registerModel(relationalinfo::class, [
+                            'period_of_stay' ,
+                            'berean_center' ,
+                            'tithe' ,
+                            'welfare' ,
+                            'ministry' ,
+                            'department' , 
+                        ])->registerModel(emergencyinfo::class, [
+                            'emergency_name',
+                            'emergency_phone',
+                            'emergency_relation',
+                         ])
+                        ->search($request->search); 
+                            
+                        return response()->json($searchResults); 
+                        // return response()->json(collect($searcharray)->unique('id')->paginate(5)); 
+
+
+        
         
     }
 
@@ -191,7 +227,7 @@ class memberController extends Controller
             'emergency_name' => [ 'string'],
             'emergency_phone' => [ 'string',  'max:15'],
             'emergency_relation' => [ 'string'],
-            'image' => [ 'file', 'image', 'max:5000']
+            'image' => [ 'file', 'max:5000','mimes:jpeg,jpg,png,bmp,tiff']
         ]);
 
         if ($validator->fails())

@@ -2,6 +2,7 @@
 
 $(document).ready(function(){
     var token = localStorage.getItem('access_token')
+    var checkbox 
     var checkboxItem =[]
     $('.submit_addform').on('click', function(e){
         e.preventDefault()
@@ -102,7 +103,15 @@ $(document).ready(function(){
             },
             success: function(data)
             {
+                if(data.status == 'error'){
+                    $('.edit_errorMsg').html(`<p class="text-danger" style='width: -webkit-fill-available; text-align: center;'><b>${data.error[0]} </b> </p>`)
+                }
+                console.log(data)
                 $(".updateForm").trigger("reset")
+            },
+            error: function(data)
+            {
+                console.log(data)
             }
         });
     } 
@@ -117,6 +126,8 @@ $(document).ready(function(){
             },
             success: function(data) {
                 viewAll_action(data)
+                // $('.allPerPage').text(response.to)
+                // $('.allEntries').text(response.total)
             }, 
             error: function(data){
     
@@ -130,8 +141,7 @@ $(document).ready(function(){
             console.log(data)
             var imgPath = `storage/${response[i].profileImg}`
             if(!response[i].profileImg){
-                imgPath = `images/avatar.png`
-                
+                imgPath = `images/avatar.png`  
             }
 
             $('.member_info').append(`
@@ -144,7 +154,7 @@ $(document).ready(function(){
                     </td>
                         <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal"><img src="${imgPath}" alt="Avatar" class="avatar"></td>
                         <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal">${response[i].name}</td>
-                        <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal">${response[i].email}</td>
+                        <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal" style="text-transform: lowercase;">${response[i].email}</td>
                         <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal">${response[i].address}</td>
                         <td href="#infomodal" onclick='viewone("${response[i].id}")' data-toggle="modal">${response[i].phone}</td>
                     <td>
@@ -156,34 +166,10 @@ $(document).ready(function(){
             $('.allPerPage').text(data.to)
             $('.allEntries').text(data.total)
 
-            var checkbox = $(`table tbody input[type="checkbox"]`);
+            checkbox = $(`table tbody input[type="checkbox"]`);
             console.log(checkbox)
             
-            $("#selectAll").click(function(e){
-                e.stopImmediatePropagation();
-                if(this.checked){
-                    checkbox.each(function(i){
-                        this.checked = true; 
-                        if(!checkboxItem.includes(checkbox[i].value)){
-                            checkboxItem.push(checkbox[i].value)
-                        }        
-                    }); 
-                } else{
-                    checkbox.each(function(i){
-                        this.checked = false;  
-                        if(checkboxItem.includes(checkbox[i].value)){
-                            var x = checkbox[i].value
-                            checkboxItem.splice(checkboxItem.indexOf(x))
-                        }                      
-                    });
-                }
-                console.log(checkboxItem)
-                if(checkboxItem.length){
-                    $('#navDelBtn').attr('class','btn btn-danger')                    
-                }else{
-                    $('#navDelBtn').attr('class','disabled btn btn-danger')  
-                }
-            });
+            
             checkbox.click(function(e){
                 if(!this.checked){
                     $("#selectAll").prop("checked", false);
@@ -214,6 +200,34 @@ $(document).ready(function(){
             $('.pagination_li').append(`
                 <li class="page-item" id="active${i}"><a href="#" onclick='pageView(${i})' class="page-link">${i}</a></li>
             `) 
+        }
+    }
+
+    window.selectAll = function(){
+        console.log(checkbox)
+        if($('#selectAll')[0].checked){ 
+            checkbox.each(function(i){ 
+                console.log($(checkbox[i]))
+                $(checkbox[i]).prop('checked', true)
+                if(!checkboxItem.includes(checkbox[i].value)){
+                    checkboxItem.push(checkbox[i].value)
+                }        
+            }); 
+        } else{
+            checkbox.each(function(i){
+                checkbox.prop('checked', false)
+                if(checkboxItem.includes(checkbox[i].value)){
+                    var x = checkbox[i].value
+                    checkboxItem.splice(checkboxItem.indexOf(x))
+                }                      
+            });
+        }
+        
+        console.log(checkboxItem)
+        if(checkboxItem.length){
+            $('#navDelBtn').attr('class','btn btn-danger')                    
+        }else{
+            $('#navDelBtn').attr('class','disabled btn btn-danger')  
         }
     }
 
@@ -271,6 +285,34 @@ $(document).ready(function(){
         })
      }
  }
+
+        // window.searchView = function (i){
+        //     $('.page-item').attr('class', 'page-item')
+        //     $.ajax({
+        //         type: 'post',
+        //         url: `api/search?page=${i}`,
+        //         dataType: 'json',
+        //         data: {
+        //             'search':$('.search_input').val()
+        //         },
+        //         headers:{
+        //             "Authorization": `Bearer ${token}`
+        //         },
+        //         success: function(data){
+        //             page = data
+        //             console.log(data)
+        //             $('.pagination_li').html('')
+        //             $('.member_info').html('')
+    
+        //             $(`#active${data.current_page}`).attr('class','page-item active' )
+
+        //         },
+        //         error:function(data){
+        //             console.log(data)
+        //         }
+        //     })
+        // }
+
      window.pageView = function (i){
         $('.page-item').attr('class', 'page-item')
          $.ajax({
@@ -374,6 +416,11 @@ $(document).ready(function(){
                 "Authorization": `Bearer ${token}`
             },
             success: function(response){
+                $('.relationalinfos').hide()
+                $('.emergencyinfos').hide()
+                $('.relationalinfos .relationalinfos_tr ~ tr').remove()
+                $('.emergencyinfos .emergencyinfos_tr ~ tr').remove()
+
                 $('#deleteEmployeeModal2').modal('hide')
                 $('#deleteEmployeeModal').modal('hide')
                 $('.member_info').html('')
@@ -386,10 +433,28 @@ $(document).ready(function(){
         })
     }
 
-    $('.search_input').keyup(function(e){
-        e.preventDefault($('.search_input').val())
-        console.log($('.search_input').val())
+    
+
+    function delay(callback, ms) {
+        var timer = 0;
+        return function() {
+          var context = this, args = arguments;
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            callback.apply(context, args);
+          }, ms || 0);
+        };
+      }
+
+    $('.search_input').keydown(delay(function(e){
+        console.log( $('.relationalinfos'))
+        $('.relationalinfos').show()
+        $('.emergencyinfos').show()
         if($('.search_input').val()){
+            $('.relationalinfos .relationalinfos_tr ~ tr').remove()
+            $('.emergencyinfos .emergencyinfos_tr ~ tr').remove()
+           
+
             $.ajax({
                 type: 'post',
                 url: 'api/search',
@@ -403,43 +468,132 @@ $(document).ready(function(){
                 success: function(response){
                    console.log(response)
                    $('.member_info').html('')
+                   
+                   
     
-                   for(var i = 0; i < response.data.length; i++ ){
+                   for(var i = 0; i < response.length; i++ ){
+                    var imgPath = `storage/${response[i].searchable.profileImg}`
+                    if(!response[i].searchable.profileImg){
+                        imgPath = `images/avatar.png`  
+                    }
+                    if(response[i].type == "personalinfos"){
                     $('.member_info').append(`
                         <tr>
                             <td>
                                 <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox${response.data[i].searchable.id}" name="options[]" value="${response.data[i].searchable.id}">
-                                    <label for="checkbox${response.data[i].searchable.id}"></label>
+                                    <input type="checkbox" id="checkbox${response[i].searchable.id}" name="options[]" value="${response[i].searchable.id}">
+                                    <label for="checkbox${response[i].searchable.id}"></label>
                                 </span>
                             </td>
-                                <td href="#infomodal" onclick='viewone("${response.data[i].searchable.id}")' data-toggle="modal"><img src="storage/${response.data[i].searchable.profileImg}" alt="Avatar" class="avatar"></td>
-                                <td href="#infomodal" onclick='viewone("${response.data[i].searchable.id}")' data-toggle="modal">${response.data[i].searchable.name}</td>
-                                <td href="#infomodal" onclick='viewone("${response.data[i].searchable.id}")' data-toggle="modal">${response.data[i].searchable.email}</td>
-                                <td href="#infomodal" onclick='viewone("${response.data[i].searchable.id}")' data-toggle="modal">${response.data[i].searchable.address}</td>
-                                <td href="#infomodal" onclick='viewone("${response.data[i].searchable.id}")' data-toggle="modal">${response.data[i].searchable.phone}</td>
+                                <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal"><img src="${imgPath}" alt="Avatar" class="avatar"></td>
+                                <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.name}</td>
+                                <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal" style="text-transform: lowercase;">${response[i].searchable.email}</td>
+                                <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.address}</td>
+                                <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.phone}</td>
                             <td>
-                                <a href="#editEmployeeModal" class="edit" onclick='updateMember("${response.data[i].searchable.id}")' data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal2" class="delete" onclick='deleteSingle("${response.data[i].searchable.id}")'  data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="#editEmployeeModal" class="edit" onclick='updateMember("${response[i].searchable.id}")' data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#deleteEmployeeModal2" class="delete" onclick='deleteSingle("${response[i].searchable.id}")'  data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                     `)
+                    }
+
+                    if(response[i].type == "relationalinfos"){
+                        $('.relationalinfos > .relationalinfos_tr').after(`
+                        
+                        <tr>
+                            <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="checkbox${response[i].searchable.id}" name="options[]" value="${response[i].searchable.id}">
+                                        <label for="checkbox${response[i].searchable.id}"></label>
+                                    </span>
+                                </td>
+                                    <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">Center: ${response[i].searchable.berean_center}</td>
+                                    <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.department}</td>
+                                    <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.period_of_stay}</td>    
+                                    <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal" >${response[i].searchable.ministry}</td>
+                                    <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">Tithe: ${response[i].searchable.tithe}</td>
+                                    <td href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">Welfare:${response[i].searchable.welfare}</td>    
+                            </tr>
+                        </tr>
+                    `)
+                    }
+                    if(response[i].type == "emergencyinfos"){
+                        $('.emergencyinfos > .emergencyinfos_tr').after(`
+                        
+                            <tr >
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="checkbox${response[i].searchable.id}" name="options[]" value="${response[i].searchable.id}">
+                                        <label for="checkbox${response[i].searchable.id}"></label>
+                                    </span>
+                                </td>
+                                    <td colspan='3 href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal" >${response[i].searchable.emergency_name}</td>
+                                    <td colspan='2' href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.emergency_phone}</td>
+                                    <td ' href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.emergency_relation}</td>    
+                            </tr>
+                    `)
+                    }                  
+
+
                    }
-                    $('.allPerPage').text(response.to)
-                    $('.allEntries').text(response.total)
+
+                   $('.pagination_li').html('');
+                    // for(var i = 1; i <= response.last_page; i++ ){
+                    //     $('.pagination_li').append(`
+                    //         <li class="page-item" id="active${i}"><a href="#" onclick='searchView(${i})' class="page-link">${i}</a></li>
+                    //     `) 
+                    // }
+
+                   checkbox = $(`table tbody input[type="checkbox"]`);
+                    console.log(checkbox)
+                    
+                    
+                    checkbox.click(function(e){
+                        if(!this.checked){
+                            $("#selectAll").prop("checked", false);
+                        }
+                    });
+
+                    checkbox.click(function(e){
+                        e.stopImmediatePropagation();
+                        checkbox.each(function(i){
+                            if(checkbox[i].checked && !checkboxItem.includes(checkbox[i].value)){
+                                    checkboxItem.push(checkbox[i].value)
+                            }
+                            else if(!checkbox[i].checked && checkboxItem.includes(checkbox[i].value)){
+                                var x = checkbox[i].value
+                                checkboxItem.splice(checkboxItem.indexOf(x))
+                            }
+                        })
+                        console.log(checkboxItem)
+                        if(checkboxItem.length){
+                            $('#navDelBtn').attr('class','btn btn-danger')                
+                        }else{
+                                $('#navDelBtn').attr('class','disabled btn btn-danger')  
+                        }
+                    });
+
+                    $('.allPerPage').text(response.length)
+                    $('.allEntries').text(response.length)
                 },
                 error:function(response){
                     console.log(response)
                 }
             })
-        }else{
-            $('.search_input').val() = ''
-            $('.member_info').html('')
-            getAll()
-
+        }else{  
+            $('.relationalinfos').hide()
+            $('.emergencyinfos').hide()
+            $('.relationalinfos .relationalinfos_tr ~ tr').remove()
+            $('.emergencyinfos .emergencyinfos_tr ~ tr').remove()
+                $('.member_info').html('')            
+                getAll()
         }
+
         
-    })
+    },1000
+    ))
 
     $('#export').on('click', function(e){
         e.preventDefault()

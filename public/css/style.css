@@ -682,6 +682,19 @@ input[type="checkbox"]:checked::before{
     background-color: #18ba60;
     border-color: #18ba60;
 }
+#addEmployeeModal input[type=text],#editEmployeeModal input[type=text]{
+    text-transform: capitalize;
+    
+}
+.relationalinfos_tr ~ tr{
+    text-transform: capitalize;
+}
+.emergencyinfos_tr ~ tr{
+    text-transform: capitalize;
+}
+.member_info td{
+    text-transform: capitalize;
+}
 
 @media (max-width: 767px){
 	.sign-content h3{

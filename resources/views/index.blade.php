@@ -54,10 +54,11 @@
 				<thead>
 					<tr>
 						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
+							<span class="custom-checkbox ">
+								<input type="checkbox" id="selectAll" onclick="selectAll()" >								
 								<label for="selectAll"></label>
 							</span>
+							
 						</th>
 						<th>Avatar</th>
 						<th>Name</th>
@@ -68,10 +69,21 @@
 					</tr>
 				</thead>
 				<tbody class="member_info">
+										
+				</tbody>
+				<tbody class="relationalinfos" style="display: none">
+					<tr class="relationalinfos_tr">
+						<th colspan="7" class="text-center">Church Information Results</th>
+					</tr>					
+				</tbody>
+				<tbody class="emergencyinfos" style="display: none">
+					<tr class="emergencyinfos_tr">
+						<th colspan="7" class="text-center">Emergency Contact Results</th>
+					</tr>		
 				</tbody>
 			</table>
 			<div class="clearfix">
-				<div class="hint-text">Showing <b class="allPerPage">5</b> out of <b class="allEntries">25</b> entries</div>
+				<div class="hint-text">Showing <b class="allPerPage">0</b> out of <b class="allEntries">0</b> entries</div>
 				<ul class="pagination">
 						<li class="page-item " onclick='previous_page()'  ><a href="#" class="page-link">Previous</a></li>
                         <span class="pagination_li" style="display:inline-flex" ></span>
@@ -83,7 +95,7 @@
 </div>
 <!-- add Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
+	<div class="modal-dialog">	
 		<div class="modal-content">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Employee</h4>
@@ -559,7 +571,7 @@
 														
 													</div>
 													<div class="float-right">
-														<input type="button" class="btn btn-outline-danger mr-2 btn-sm" data-dismiss="modal" value="Close">
+														<input type="button" class="btn btn-outline-danger mr-2 btn-sm" data-dismiss="modal" onclick="location.reload()" value="Close">
 														<input type="button" class="btn btn-outline-success btn-sm updatePersonalInfo1" onclick="update('personalinfo')" value="Save">
 													</div>
 																					
@@ -652,7 +664,7 @@
 														</div>
 													</div>
 													<div class="float-right">
-														<input type="button" class="btn btn-outline-danger mr-2 btn-sm" data-dismiss="modal" value="Close">
+														<input type="button" class="btn btn-outline-danger mr-2 btn-sm" data-dismiss="modal" onclick="location.reload()" value="Close">
 														<input type="button" class="btn btn-outline-success btn-sm updateRelationalInfo2" onclick="update('relationalinfo')" value="Save">
 													</div>
 												</div>
@@ -679,7 +691,7 @@
 														</div>
 													</div>
 													<div class="float-right">
-														<input type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" value="Close">
+														<input type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" onclick="location.reload()" value="Close">
 														<input type="button" class="btn btn-outline-success btn-sm updateEmergencyInfo3"onclick="update('emergencyinfo')"  value="Save">
 													</div>
 												</div>
@@ -693,7 +705,7 @@
 						</div>
 					</section>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer edit_errorMsg">
 					
 				</div>
 		</div>
@@ -779,7 +791,7 @@
 								<p style="font-weight: bold">Address: <span style="font-weight: 100" class=" viewaddress">tema, comm16; lashibi</span></p>
 							</div>
 							<div class="col-md-2">
-								<p style="font-weight: bold">Email: <span style="font-weight: 100" class=" viewemail">mensahkofi@gmail.com</span></p>
+								<p style="font-weight: bold">Email: <span style="font-weight: 100;text-transform: lowercase !important" class=" viewemail">mensahkofi@gmail.com</span></p>
 							</div>
 							<div class="col-md-4">
 								<p style="font-weight: bold" > Hometown: <span style="font-weight: 100" class=" viewhometown">Sege, ada;</span></p>
