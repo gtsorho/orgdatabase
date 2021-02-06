@@ -137,13 +137,14 @@ table.table .avatar {
 	color: #666;
 }	
 .pagination li.active a, .pagination li.active a.page-link {
-	background: #03A9F4;
+	background: #23246d;
+    
 }
 .page-link:focus{
     box-shadow: none;
 }
 .pagination li.active a:hover {        
-	background: #0397d6;
+	background: #cc9a05  ;
 }
 .pagination li.disabled i {
 	color: #ccc;

@@ -21,6 +21,7 @@ class personalinfo extends Model implements Searchable
     'hometown' ,
     'age' ,
     'status' ,
+    'noChildren',
     'employmentstat' ,
     'occupation' ,
     'profession' ,

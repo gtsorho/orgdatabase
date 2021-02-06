@@ -19,6 +19,7 @@ class CreatePersonalinfosTable extends Migration
             $table->string('title');
             $table->string('name');
             $table->string('email')->nullable();
+            $table->string('noChildren');
             $table->string('phone');
             $table->string('dob');
             $table->string('address');

@@ -28,7 +28,8 @@ class memberController extends Controller
             'name' => ['required','string', 'max:25'],
             'email' => ['nullable', 'email:rfc','max:30'],   
             'phone' =>[ 'required','string', 'max:15'],
-            'dob' =>[ 'date'],
+            'dob' =>['nullable', 'date'],
+            'noChildren' => ['required', 'string'], 
             'address' => [ 'required','string'],
             'hometown' => [ 'required','string'],
             'age' => [ 'required','string', 'max:3'],
@@ -37,6 +38,7 @@ class memberController extends Controller
             'occupation' => [ 'required','string'],
             'profession' => [ 'required','string'],
             'period_of_stay' => [ 'required','string'],
+            'baptized' => ['required', 'string'],
             'berean_center' => [ 'required','string'],
             'tithe' => [ 'required','string'],
             'welfare' => [ 'required','string', 'max:3'],
@@ -58,6 +60,7 @@ class memberController extends Controller
             'name' => $request->name,
             'email' => $request->email,   
             'phone' => $request->phone,
+            'noChildren' =>  $request->noChildren,
             'dob' =>  $request->dob,
             'address' => $request->address,
             'hometown' => $request->hometown,
@@ -72,6 +75,7 @@ class memberController extends Controller
         $relationalsql = relationalinfo::create([
             'member_id' => $personalsql->id,
             'period_of_stay' => $request->period_of_stay,
+            'baptized' => $request->baptized,
             'berean_center' => $request->berean_center,
             'tithe' => $request->tithe,
             'welfare' => $request->welfare,
@@ -112,7 +116,7 @@ class memberController extends Controller
                        $personalinfo_array['updatemsg'] = $updatemsg;
                     }
                 }
-                $personalinfo_array['message'] = 'update successful';
+                $personalinfo_array['message'] = 'Update Successful';
                
                 return response()->json($personalinfo_array);
 
@@ -166,6 +170,7 @@ class memberController extends Controller
                             'email',   
                             'phone',
                             'dob',
+                            'noChildren',
                             'address',
                             'hometown',
                             'age' ,
@@ -176,6 +181,7 @@ class memberController extends Controller
                         ])->registerModel(relationalinfo::class, [
                             'period_of_stay' ,
                             'berean_center' ,
+                            'baptized',
                             'tithe' ,
                             'welfare' ,
                             'ministry' ,
@@ -211,6 +217,7 @@ class memberController extends Controller
             'email' =>[ 'email:rfc','max:30'],   
             'phone' =>[ 'string', 'max:15'],
             'dob' =>[ 'date'],
+            'noChildren' => [ 'string'],            
             'address' => [ 'string'],
             'hometown' => [ 'string'],
             'age' => [ 'string', 'max:3'],
@@ -219,6 +226,7 @@ class memberController extends Controller
             'occupation' => [ 'string'],
             'profession' => [ 'string'],
             'period_of_stay' => [ 'string'],
+            'baptized' => [ 'string'],
             'berean_center' => [ 'string'],
             'tithe' => [ 'string'],
             'welfare' => [ 'string', 'max:3'],

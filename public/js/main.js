@@ -4,6 +4,12 @@ $(document).ready(function(){
     var token = localStorage.getItem('access_token')
     var checkbox 
     var checkboxItem =[]
+
+    window.history.forward(); 
+    function noBack() { 
+        window.history.forward(); 
+    } 
+
     $('.submit_addform').on('click', function(e){
         e.preventDefault()
         var fd = new FormData();
@@ -64,6 +70,9 @@ $(document).ready(function(){
                 },
                 error:function(data){
                     console.log(data)
+                    if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
                 }
             });
          
@@ -105,6 +114,9 @@ $(document).ready(function(){
             {
                 if(data.status == 'error'){
                     $('.edit_errorMsg').html(`<p class="text-danger" style='width: -webkit-fill-available; text-align: center;'><b>${data.error[0]} </b> </p>`)
+                }else{
+                    $('.edit_errorMsg').html(`<p class="text-success" style='width: -webkit-fill-available; text-align: center;'><b>${data.message} </b> </p>`)
+
                 }
                 console.log(data)
                 $(".updateForm").trigger("reset")
@@ -112,6 +124,10 @@ $(document).ready(function(){
             error: function(data)
             {
                 console.log(data)
+                console.log(data)
+                    if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
             }
         });
     } 
@@ -130,7 +146,32 @@ $(document).ready(function(){
                 // $('.allEntries').text(response.total)
             }, 
             error: function(data){
-    
+                console.log(data)
+                console.log(data)
+                    if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
+            }
+        })
+    }
+
+    window.logout = function(){
+        $.ajax({
+            type: 'post',
+            url: 'api/logout',
+            dataType: 'json',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+            success: function(data) {
+               window.location = 'login'
+            }, 
+            error: function(data){
+                console.log(data)
+                console.log(data)
+                    if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
             }
         })
     }
@@ -201,6 +242,7 @@ $(document).ready(function(){
                 <li class="page-item" id="active${i}"><a href="#" onclick='pageView(${i})' class="page-link">${i}</a></li>
             `) 
         }
+        $(`#active${data.current_page}`).attr('class','page-item active' )
     }
 
     window.selectAll = function(){
@@ -255,6 +297,9 @@ $(document).ready(function(){
                 },
                 error:function(data){
                     console.log(data)
+                    if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
                 }
             })
         }
@@ -280,7 +325,10 @@ $(document).ready(function(){
    
             },
             error:function(data){
-                console.log(data)
+                    console.log(data)
+                    if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
             }
         })
      }
@@ -332,7 +380,10 @@ $(document).ready(function(){
  
              },
              error:function(data){
-                 console.log(data)
+                console.log(data)
+                    if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
              }
          })
      }
@@ -365,6 +416,7 @@ $(document).ready(function(){
                  $('.viewemail').text(data[0].email)
                  $('.viewphone').text(data[0].phone)
                  $('.viewstatus').text(data[0].status)
+                 $('.viewnochildren').text(data[0].noChildren)                 
                  $('.viewdob').text(data[0].dob)
                  $('.viewsex').text(data[0].sex)
                  $('.viewaddress').text(data[0].address)
@@ -373,6 +425,7 @@ $(document).ready(function(){
                  $('.viewoccupation').text(data[0].occupation)
                  $('.viewemploymentstat').text(data[0].employmentstat)
                  $('.viewperiod').text(data[0].period_of_stay)
+                 $('.viewbaptized').text(data[0].baptized)
                  $('.viewberea').text(data[0].berean_center)
                  $('.viewministry').text(data[0].ministry)
                  $('.viewtithe').text(data[0].tithe)
@@ -380,11 +433,13 @@ $(document).ready(function(){
                  $('.viewdepartment').text(data[0].department)
                  $('.viewemergencyname').text(data[0].emergency_name)
                  $('.viewemergencyphone').text(data[0].emergency_phone)
-                 $('.viewemergencyrelation').text(data[0].emergency_relation)
-                 
+                 $('.viewemergencyrelation').text(data[0].emergency_relation)                 
              },
              error: function (data){
-                 console.log(data)
+                console.log(data)
+                    if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
              }
          })
  
@@ -429,6 +484,9 @@ $(document).ready(function(){
             },
             error:function(response){
                 console.log(response)
+                    if(response.status == 401 || response.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
             }
         })
     }
@@ -580,6 +638,9 @@ $(document).ready(function(){
                 },
                 error:function(response){
                     console.log(response)
+                    if(response.status == 401 || response.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
                 }
             })
         }else{  
@@ -610,6 +671,9 @@ $(document).ready(function(){
             },
             error:function(response){
                 console.log(response)
+                    if(response.status == 401 || response.responseJSON.message =="Unauthenticated."){
+                        window.location = 'login'
+                    }
             }
         })
     })

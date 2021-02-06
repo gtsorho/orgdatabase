@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<link rel="icon" type="image/png" sizes="16x16" href ="{{asset('images/aglogo.png')}}">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<title>LPWC A/G</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -44,9 +46,10 @@
 							<i class="material-icons m-2" style="font-size: 20px">search</i>
 						</div>
 					</div>
-					<div class="col-sm-4" id="addDelCol">
+					<div class="col-sm-4" id="addDelCol">					
+						<a href="#logout" onclick="logout()"  class="btn btn-warning"><i class="material-icons">&#xe899;</i></a>						
 						<a href="#addEmployeeModal" id="navAddBtn" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
-						<a href="#deleteEmployeeModal" id='navDelBtn' class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#deleteEmployeeModal" id='navDelBtn' class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>	
 					</div>
 				</div>
 			</div>
@@ -195,6 +198,12 @@
 																	<label class="form-check-label" for="addinlineRadio4">Divorced</label>
 																</div>
 															</div>
+														</div>
+														<div class="col-md-2" style="max-width: 10%">
+															<div class="form-group">
+																<label>No# Children*</label> 
+																<input class="form-control form-control-sm" type="number" name="noChildren" placeholder="2"  > 
+															</div>
 														</div>	
 														<div class="col-md-4">
 															<div class="form-group">
@@ -273,8 +282,22 @@
 															  <option>2  years and above</option>
 															  <option>1 year</option>
 															  <option>Just Joined</option>
+															  <option>Distant Member</option>
 															</select>
 														  </div>
+													</div>
+													<div class="col-md-2 ml-5 pr-1">
+														<label class="font-weight-bold">Baptized*</label>
+														<div class="form-group mt-0">
+															<div class="form-check form-check-inline mr-1">
+																<input class="form-check-input" type="radio" name="baptized" id="addbaptized1" value="Baptized" >
+																<label class="form-check-label" for="inlineRadio1">Baptized</label>
+															</div>
+															<div class="form-check form-check-inline mr-1">
+																<input class="form-check-input" type="radio" name="baptized" id="addbaptized2" value="Not Baptized" >
+																<label class="form-check-label" for="inlineRadio2">Not Baptized</label>
+															</div>
+														</div>
 													</div>
 													<div class="col-md-2">
 														<div class="form-group">
@@ -510,6 +533,12 @@
 																</div>
 															</div>
 														</div>	
+														<div class="col-md-2" style="max-width: 10%">
+															<div class="form-group">
+																<label>No# Children*</label> 
+																<input class="form-control form-control-sm" type="number" name="noChildren" placeholder="2"  > 
+															</div>
+														</div>
 														<div class="col-md-4">
 															<div class="form-group">
 																<label>Phone *</label> 
@@ -589,6 +618,19 @@
 																<option>1 year</option>
 																<option>Just Joined</option>
 																</select>
+															</div>
+														</div>
+														<div class="col-md-2 ml-5 pr-1">
+															<label class="font-weight-bold">Baptized*</label>
+															<div class="form-group mt-0">
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="baptized" id="updatebaptized1" value="Baptized" >
+																	<label class="form-check-label" for="updatebaptized1">Baptized</label>
+																</div>
+																<div class="form-check form-check-inline mr-1">
+																	<input class="form-check-input" type="radio" name="baptized" id="updatebaptized2" value="Not Baptized" >
+																	<label class="form-check-label" for="updatebaptized2">Not Baptized</label>
+																</div>
 															</div>
 														</div>
 														<div class="col-md-2">
@@ -785,6 +827,9 @@
 								<p style="font-weight: bold">Status: <span style="font-weight: 100" class=" viewstatus">single</span></p>
 							</div>
 							<div class="col-md-2">
+								<p style="font-weight: bold">No# Children: <span style="font-weight: 100" class=" viewnochildren">2</span></p>
+							</div>
+							<div class="col-md-2">
 								<p style="font-weight: bold">Phone: <span style="font-weight: 100" class=" viewphone">024 xxx xxxx</span></p>
 							</div>
 							<div class="col-md-4">
@@ -812,6 +857,9 @@
 						<div class="row">
 							<div class="col-md-4">
 								<p style="font-weight: bold">Period: <span style="font-weight: 100" class="viewperiod">10 years and above</span></p>
+							</div>
+							<div class="col-md-4">
+								<p style="font-weight: bold">Baptizim: <span style="font-weight: 100" class="viewbaptized">Baptized</span></p>
 							</div>
 							<div class="col-md-2">
 								<p style="font-weight: bold">Berean Center: <span style="font-weight: 100" class="viewberea">5</span></p>

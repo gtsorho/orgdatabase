@@ -11,6 +11,7 @@ class relationalinfo extends Model implements Searchable
     protected $fillable = [
             'member_id',
             'period_of_stay' ,
+            'baptized' ,
             'berean_center' ,
             'tithe' ,
             'welfare' ,

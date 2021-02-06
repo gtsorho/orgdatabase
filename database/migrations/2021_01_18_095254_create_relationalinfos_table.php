@@ -17,6 +17,7 @@ class CreateRelationalinfosTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('member_id');
             $table->string('period_of_stay');
+            $table->string('baptized');
             $table->string('berean_center');
             $table->string('tithe');
             $table->string('welfare');

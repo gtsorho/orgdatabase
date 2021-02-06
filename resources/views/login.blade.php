@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href ="{{asset('images/aglogo.png')}}">
 
-    <title>Signin Template for Bootstrap</title>
+
+    <title>Signin</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
@@ -42,6 +43,11 @@
   <script>
     $(document).ready(function(){ 
 
+      window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+        
     $('#inputPassword').on('click',function(){
       var x = $("#inputPassword")[0];
         x.type = "text";

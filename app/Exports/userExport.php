@@ -18,7 +18,7 @@ class userExport implements FromQuery, Responsable, ShouldAutoSize, WithMapping,
 {
     use Exportable;
 
-    private $fileName = 'user.xlsx';
+    private $fileName = 'LPWC_membership_list.xlsx';
    
     /**
      * @return \Illuminate\Support\Collection
@@ -33,12 +33,13 @@ class userExport implements FromQuery, Responsable, ShouldAutoSize, WithMapping,
     {
         return[
             $reationshipinfo->id,
-            $reationshipinfo->profileImg,
+            // $reationshipinfo->profileImg,
             $reationshipinfo->title ,
             $reationshipinfo->name, 
             $reationshipinfo->email ,   
             $reationshipinfo->phone,
             $reationshipinfo->dob,
+            $reationshipinfo->noChildren,
             $reationshipinfo->address ,
             $reationshipinfo->hometown ,
             $reationshipinfo->age ,
@@ -48,6 +49,7 @@ class userExport implements FromQuery, Responsable, ShouldAutoSize, WithMapping,
             $reationshipinfo->profession,
 
             $reationshipinfo->reationshipinfo->period_of_stay ,
+            $reationshipinfo->reationshipinfo->baptized,
             $reationshipinfo->reationshipinfo->berean_center ,
             $reationshipinfo->reationshipinfo->tithe ,
             $reationshipinfo->reationshipinfo->welfare ,
@@ -63,7 +65,7 @@ class userExport implements FromQuery, Responsable, ShouldAutoSize, WithMapping,
     {
         return [
             '#',
-            'ProfileImg',
+            // 'ProfileImg',
             'Title' ,
             'Name', 
             'Email' ,   
@@ -73,10 +75,12 @@ class userExport implements FromQuery, Responsable, ShouldAutoSize, WithMapping,
             'Hometown' ,
             'Age' ,
             'Status' ,
+            'noChildren',
             'Employmentstat' ,
             'Occupation' ,
             'Profession' ,
             'Period_of_stay' ,
+            'baptized',
             'Berean_center' ,
             'Tithe' ,
             'Welfare' ,

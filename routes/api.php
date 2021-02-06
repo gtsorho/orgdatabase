@@ -20,6 +20,7 @@ use App\Http\Controllers\memberController;
 // });
 
 Route::post('/login', 'adminController@login');
+Route::post('/logout', 'adminController@logout');
 Route::post('/store', 'memberController@store');
 Route::post('/update', 'memberController@update');
 Route::post('/delete', 'memberController@delete');
