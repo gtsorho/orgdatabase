@@ -13,9 +13,15 @@ class userseed extends Seeder
     public function run()
     {
         User::create([
-            "name" => 'geroge',
-            "email" => 'sorho@yahoo.com',
-            "password" =>  Hash::make('numlock11'),
+            "name" => 'admin',
+            "email" => 'admin@lpwc',
+            "password" =>  Hash::make('lpwc@123'),
+         ]);
+         User::create([
+            "name" => 'superadmin',
+            "email" => 'superadmin@lpwc',
+            "password" =>  Hash::make('lpwc@admin123'),
+            "role"=> 'admin',
          ]);
     }
 }

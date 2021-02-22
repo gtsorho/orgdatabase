@@ -102,6 +102,9 @@ class memberController extends Controller
         $update_flavour = $request->flavour;
         switch ($update_flavour){
             case "personalinfo":
+                $model = personalinfo::findOrFail($request->update_id);
+                $model->update(array_filter($request->except(['flavour', 'update_id', 'profile_path','image'])));
+
                 $updatesql = personalinfo::where('id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id', 'profile_path','image'])));
                 $personalinfo_array = array();
                 if($request->has('image')){
@@ -123,11 +126,16 @@ class memberController extends Controller
                 break;
 
             case "relationalinfo":
-                $updatesql = relationalinfo::where('member_id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id'])));
+
+                $model = relationalinfo::findOrFail($request->update_id);
+                $model->update(array_filter($request->except(['flavour', 'update_id'])));
+                // $updatesql = relationalinfo::where('member_id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id'])));
                 return response()->json(['status'=>'success', 'message'=> 'update successful']);
                 break;
             case "emergencyinfo":
-                $updatesql = emergencyinfo::where('member_id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id'])));
+                $model = emergencyinfo::findOrFail($request->update_id);
+                $model->update(array_filter($request->except(['flavour', 'update_id'])));
+                // $updatesql = emergencyinfo::where('member_id', $request->update_id)->update(array_filter($request->except(['flavour', 'update_id'])));
                 return response()->json(['status'=>'success', 'message'=> 'update successful']);
 
                 break;
@@ -136,7 +144,11 @@ class memberController extends Controller
     public function delete(request $request){
         $imgPath = personalinfo::where('id', $request->member_id)->first()->profileImg;
         Storage::disk('public')->delete($imgPath);
-        personalinfo::where('id', $request->member_id)->delete();
+        // personalinfo::where('id', $request->member_id)->delete();
+
+        $model = personalinfo::findOrFail($request->member_id);
+        $model->delete();
+
         return response()->json(['status'=>'success', 'message'=> 'delete successful']);
     }
     
@@ -202,7 +214,7 @@ class memberController extends Controller
     }
 
     public function export(){
-        return response()->json('export');
+        return response()->json('export');  
     }
 
     // *****************************

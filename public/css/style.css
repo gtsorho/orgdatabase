@@ -366,6 +366,29 @@ button:focus,
 	padding-bottom: 60px;
 } */
 
+#logs{
+    
+    color: #ffc107;
+    float: left;
+    margin-top: 32px;
+    font-size: 13px;
+    border: none;
+    min-width: 50px;
+    border-radius: 2px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
+    margin-right: 90px;
+}
+#logs i{
+    float: left;
+    font-size: 21px;
+    margin-right: 5px;
+}
+#logs span{
+    float: left;
+    margin-top: 2px;
+}
 
 #export{
     
@@ -715,7 +738,7 @@ input[type="checkbox"]:checked::before{
 		display: block;
 	}
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 619px) {
     #logoCol{
         width: fit-content;
     }
@@ -724,6 +747,7 @@ input[type="checkbox"]:checked::before{
     }
     #addDelCol{
         width: min-content;
+        padding-left: 0%;
     }
     #nameP{
         display: none !important;
@@ -732,23 +756,28 @@ input[type="checkbox"]:checked::before{
         display: none;
     }
     #navAddBtn{
-        margin: unset;
-        padding: 0px 12px;
-        margin-bottom: 4px;
+        margin-right: 4px;
+    }
+    #navlogoutdBtn{
+        margin-right: 4px;
     }
     #navDelBtn{
-        padding: 0px 12px;
+        margin-right: 4px;
         
     }
     #navAddBtn span{
-       display:none
+       display:block
     }
     #navDelBtn span{
-        display:none
+        display:block
+    }
+    .table-title .btn {
+        margin-left: 0px;
+        margin-bottom: 4px;
     }
     
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 910px) {
     #navAddBtn span{
        display:none
     }
@@ -763,4 +792,25 @@ input[type="checkbox"]:checked::before{
     #addDelCol{
         padding:0px;
     }    
+}
+@media only screen and (max-width: 574px) {
+    #addDelCol{
+        width: 10%;
+        padding-left: 10%;
+    }   
+    #navAddBtn{
+        margin-right: 0px;
+    }
+    #navlogoutdBtn{
+        margin-right: 0px;
+    }
+    #navDelBtn{
+        margin-right: 0px;
+        
+    }
+}
+.navbar-dark .navbar-toggler {
+    
+    border-color: rgba(245, 245, 220, 0);
+    margin-top: -7px;
 }

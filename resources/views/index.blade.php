@@ -46,11 +46,19 @@
 							<i class="material-icons m-2" style="font-size: 20px">search</i>
 						</div>
 					</div>
-					<div class="col-sm-4" id="addDelCol">					
-						<a href="#logout" onclick="logout()"  class="btn btn-warning"><i class="material-icons">&#xe899;</i></a>						
-						<a href="#addEmployeeModal" id="navAddBtn" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
-						<a href="#deleteEmployeeModal" id='navDelBtn' class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>	
-					</div>
+					<div class="col-sm-4" id="addDelCol">	
+						<nav class="navbar navbar-expand-sm navbar-dark	 ">
+							<button class="navbar-toggler" style="border-color:none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+							  <span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarNav">
+								<a  id="navlogoutdBtn" onclick="logout()"  class="btn btn-warning"><i class="material-icons">&#xe899;</i></a>						
+								<a href="#addEmployeeModal" id="navAddBtn" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
+								<a href="#deleteEmployeeModal" id='navDelBtn' class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>			
+							</div>
+						  </nav>
+
+						</div>
 				</div>
 			</div>
 			<table class="table table-striped table-hover">
@@ -101,7 +109,7 @@
 	<div class="modal-dialog">	
 		<div class="modal-content">
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Employee</h4>
+					<h4 class="modal-title">Add Member</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				
@@ -435,7 +443,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 				<div class="modal-header">						
-					<h4 class="modal-title">Edit Employee</h4>
+					<h4 class="modal-title">Edit Member</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 
@@ -759,7 +767,7 @@
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Delete Employee</h4>
+					<h4 class="modal-title">Delete Member</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
@@ -779,7 +787,7 @@
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Delete Employee</h4>
+					<h4 class="modal-title">Delete Member</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
@@ -903,10 +911,9 @@
 	</div>
 </div>
 
-<style>
-	
-</style>
-<a href="#" class="btn btn-warning" id="export"><i class="material-icons">&#xe873;</i> <span>Export</span></a><br><br>					
+<a class="btn btn-dark" style="display: none" id="logs"><i class="material-icons">&#xe873;</i> <span>logs</span></a><br><br>					
+
+<a class="btn btn-warning" id="export"><i class="material-icons">&#xe873;</i> <span>Export</span></a><br><br>					
 <small style="display: none" class="text-muted float-right mr-5 " id="exportNote"><i class="material-icons">&#xe001;</i>  Export all members from DataBase</small>
 
 <script>

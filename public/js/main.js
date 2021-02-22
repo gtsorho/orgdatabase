@@ -5,10 +5,7 @@ $(document).ready(function(){
     var checkbox 
     var checkboxItem =[]
 
-    window.history.forward(); 
-    function noBack() { 
-        window.history.forward(); 
-    } 
+
 
     $('.submit_addform').on('click', function(e){
         e.preventDefault()
@@ -167,8 +164,6 @@ $(document).ready(function(){
                window.location = 'login'
             }, 
             error: function(data){
-                console.log(data)
-                console.log(data)
                     if(data.status == 401 || data.responseJSON.message =="Unauthenticated."){
                         window.location = 'login'
                     }
@@ -587,9 +582,9 @@ $(document).ready(function(){
                                         <label for="checkbox${response[i].searchable.id}"></label>
                                     </span>
                                 </td>
-                                    <td colspan='3 href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal" >${response[i].searchable.emergency_name}</td>
+                                    <td colspan='3' href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal" >${response[i].searchable.emergency_name}</td>
                                     <td colspan='2' href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.emergency_phone}</td>
-                                    <td ' href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.emergency_relation}</td>    
+                                    <td  href="#infomodal" onclick='viewone("${response[i].searchable.id}")' data-toggle="modal">${response[i].searchable.emergency_relation}</td>    
                             </tr>
                     `)
                     }                  
@@ -677,9 +672,41 @@ $(document).ready(function(){
             }
         })
     })
+    $.ajax({
+        type: 'get',
+        url: 'api/logs',
+        dataType: 'json',
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        success: function() {
+           $('#logs').show()
+        },
+        error:function(response){
+            if(response.status == 401 || response.responseJSON.message =="Unauthenticated."){
+                window.location = 'login'
+            }
+        }
+    })
 
-
-
+$('#logs').on('click', function(){
+    $.ajax({
+        type: 'get',
+        url: 'api/logs',
+        dataType: 'json',
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        success: function(res) {
+            window.location=res.url;
+        },
+        error:function(response){
+                if(response.status == 401 || response.responseJSON.message =="Unauthenticated."){
+                    window.location = 'login'
+                }
+        }
+    })
+})
     
     if(!checkboxItem.length){
         $('#navDelBtn').attr('class','disabled btn btn-danger')

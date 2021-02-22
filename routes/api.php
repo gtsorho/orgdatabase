@@ -1,7 +1,9 @@
 <?php
 
+use App\User;
 use App\Exports\userExport;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Controllers\memberController;
 
 /*
@@ -30,4 +32,20 @@ Route::get('/export', 'memberController@export');
 Route::post('/viewone', 'memberController@viewone');
 Route::get('/exportuser', function () {
     return new userExport;
+});
+
+Route::get('/log', function(){
+
+    $lastActivity = Activity::all()->paginate(20); //returns the last logged activity
+
+    return $lastActivity;
+    }
+);
+
+Route::middleware('auth:api')->get('/logs', function() {
+    if(User::where('id',auth()->guard('api')->id())->where('role','admin')->exists()){
+        return response()->json(['url'=>url('log')]);
+    }else{
+        return 'unauthorized';
+    };
 });

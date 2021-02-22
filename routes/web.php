@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Foundation\Auth\User;
+
 Route::get('/', function () {
     return view('index');
 });
@@ -18,5 +20,11 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/log', function () {
+    return view('log');
+});
+
+
 
 
